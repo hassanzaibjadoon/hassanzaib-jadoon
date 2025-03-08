@@ -1,12 +1,127 @@
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, GraduationCap, Award } from 'lucide-react';
+import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
+import { Button } from '@/components/ui/button';
 
 const AboutPage = () => {
+  // State for team toggle
+  const [showTeam, setShowTeam] = useState(false);
+  // State for chat bot
+  const [showChatBot, setShowChatBot] = useState(false);
+  // State for cursor position
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorVariant, setCursorVariant] = useState("default");
+
+  // Track mouse position for cursor animation
+  useEffect(() => {
+    const mouseMove = (e) => {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY
+      });
+    };
+
+    window.addEventListener("mousemove", mouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMove);
+    };
+  }, []);
+
+  // Cursor variants for framer-motion
+  const cursorVariants = {
+    default: {
+      x: mousePosition.x - 16,
+      y: mousePosition.y - 16,
+      backgroundColor: "rgba(255, 255, 255, 0.2)",
+      mixBlendMode: "difference"
+    },
+    hover: {
+      height: 64,
+      width: 64,
+      x: mousePosition.x - 32,
+      y: mousePosition.y - 32,
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      mixBlendMode: "difference"
+    }
+  };
+
+  // Function to handle cursor hover
+  const handleHover = () => setCursorVariant("hover");
+  const handleHoverExit = () => setCursorVariant("default");
+
   return (
     <Layout>
+      {/* Custom cursor animation */}
+      <motion.div 
+        className="custom-cursor hidden md:block"
+        variants={cursorVariants}
+        animate={cursorVariant}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          height: 32,
+          width: 32,
+          borderRadius: "50%",
+          pointerEvents: "none",
+          zIndex: 999
+        }}
+      />
+
+      {/* Chat bot toggle button */}
+      <motion.div 
+        className="fixed bottom-8 right-8 z-40"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <Button 
+          onClick={() => setShowChatBot(!showChatBot)}
+          className="rounded-full w-14 h-14 flex items-center justify-center shadow-lg"
+          variant="secondary"
+          size="icon"
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHoverExit}
+        >
+          <MessageSquare size={24} />
+        </Button>
+      </motion.div>
+
+      {/* Chat bot panel */}
+      {showChatBot && (
+        <motion.div 
+          className="fixed bottom-24 right-8 w-80 bg-card rounded-xl shadow-xl z-40 overflow-hidden"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+        >
+          <div className="p-4 border-b border-border">
+            <h3 className="font-medium">Chat Assistant</h3>
+          </div>
+          <div className="h-80 p-4 overflow-y-auto">
+            <div className="text-sm text-muted-foreground">
+              How can I help you today? Feel free to ask me about my experience and skills.
+            </div>
+          </div>
+          <div className="p-4 border-t border-border">
+            <div className="relative">
+              <input 
+                type="text" 
+                placeholder="Type your message..." 
+                className="w-full rounded-full bg-background border border-border px-4 py-2 text-sm"
+              />
+              <Button size="sm" variant="ghost" className="absolute right-1 top-1">
+                <ArrowRight size={16} />
+              </Button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Hero Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
@@ -25,6 +140,8 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-5xl font-serif font-bold text-gradient leading-tight mb-6"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleHoverExit}
             >
               My journey & expertise
             </motion.h1>
@@ -37,6 +154,24 @@ const AboutPage = () => {
             >
               A passionate professional dedicated to creating exceptional digital experiences through design and innovation.
             </motion.p>
+
+            {/* Team Toggle Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Button 
+                onClick={() => setShowTeam(!showTeam)} 
+                variant="outline" 
+                className="flex items-center gap-2 mb-8"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
+              >
+                {showTeam ? <Users size={16} /> : <User size={16} />}
+                {showTeam ? "View Individual" : "View Team"}
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -52,9 +187,42 @@ const AboutPage = () => {
               viewport={{ once: true }}
               className="aspect-square rounded-xl overflow-hidden"
             >
-              <div className="h-full w-full bg-muted flex items-center justify-center">
-                <span className="text-muted-foreground">Profile Image</span>
-              </div>
+              {showTeam ? (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="h-full w-full bg-muted grid grid-cols-2 grid-rows-2 gap-2 p-2"
+                >
+                  {[1, 2, 3, 4].map((item) => (
+                    <motion.div 
+                      key={item} 
+                      className="bg-background/40 rounded-lg flex items-center justify-center"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      onMouseEnter={handleHover}
+                      onMouseLeave={handleHoverExit}
+                    >
+                      <span className="text-muted-foreground text-sm">Team Member {item}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="h-full w-full bg-muted flex items-center justify-center"
+                  whileHover={{ 
+                    scale: 1.02,
+                    transition: { duration: 0.3 }
+                  }}
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleHoverExit}
+                >
+                  <span className="text-muted-foreground">Profile Image</span>
+                </motion.div>
+              )}
             </motion.div>
             
             <motion.div 
@@ -64,23 +232,60 @@ const AboutPage = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-3xl font-serif font-bold text-gradient">My Story</h2>
+              <motion.h2 
+                className="text-3xl font-serif font-bold text-gradient"
+                whileHover={{ scale: 1.02 }}
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
+              >
+                {showTeam ? "Our Story" : "My Story"}
+              </motion.h2>
               <div className="space-y-4 text-muted-foreground">
-                <p>
-                  With over 10 years of experience in the creative industry, I've dedicated my career to solving complex problems through thoughtful design and innovative solutions.
-                </p>
-                <p>
-                  My approach combines technical expertise with a deep understanding of user needs, allowing me to create digital experiences that are both beautiful and functional.
-                </p>
-                <p>
-                  I believe that great design should be accessible to all and strive to create work that makes a positive impact on the world.
-                </p>
+                {showTeam ? (
+                  <>
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      Our team brings together diverse talents from across the creative industry, with each member contributing unique expertise to our collaborative projects.
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      Together, we combine technical prowess with design thinking to deliver solutions that exceed expectations and push creative boundaries.
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      Our collaborative approach ensures that each project benefits from multiple perspectives, resulting in more innovative and comprehensive outcomes.
+                    </motion.p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      With over 10 years of experience in the creative industry, I've dedicated my career to solving complex problems through thoughtful design and innovative solutions.
+                    </p>
+                    <p>
+                      My approach combines technical expertise with a deep understanding of user needs, allowing me to create digital experiences that are both beautiful and functional.
+                    </p>
+                    <p>
+                      I believe that great design should be accessible to all and strive to create work that makes a positive impact on the world.
+                    </p>
+                  </>
+                )}
               </div>
               <Link 
                 to="/contact" 
                 className="inline-flex items-center text-sm font-medium text-foreground link-underline"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
               >
-                Let's Connect <ArrowRight size={14} className="ml-1" />
+                {showTeam ? "Contact Us" : "Let's Connect"} <ArrowRight size={14} className="ml-1" />
               </Link>
             </motion.div>
           </div>
@@ -97,8 +302,10 @@ const AboutPage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-serif font-bold text-gradient mb-6"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleHoverExit}
             >
-              Skills & Expertise
+              {showTeam ? "Our Expertise" : "Skills & Expertise"}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -107,7 +314,10 @@ const AboutPage = () => {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-muted-foreground"
             >
-              A comprehensive set of skills developed through years of professional experience and continuous learning.
+              {showTeam ? 
+                "Our combined skill set covers all aspects of digital product design and development." :
+                "A comprehensive set of skills developed through years of professional experience and continuous learning."
+              }
             </motion.p>
           </div>
           
@@ -120,6 +330,13 @@ const AboutPage = () => {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 className="p-4 rounded-lg neo-blur text-center"
+                whileHover={{ 
+                  scale: 1.05, 
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                  transition: { type: "spring", stiffness: 400, damping: 10 }
+                }}
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
               >
                 <span className="text-sm font-medium">{skill}</span>
               </motion.div>
@@ -140,8 +357,10 @@ const AboutPage = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="flex items-center text-2xl font-serif font-bold text-gradient mb-8"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
               >
-                <Briefcase size={20} className="mr-2" /> Professional Experience
+                <Briefcase size={20} className="mr-2" /> {showTeam ? "Our Experience" : "Professional Experience"}
               </motion.h2>
               
               <div className="space-y-8">
@@ -153,8 +372,14 @@ const AboutPage = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     className="relative pl-8 border-l border-border/70"
+                    whileHover={{ x: 5 }}
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleHoverExit}
                   >
-                    <span className="absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-foreground"></span>
+                    <motion.span 
+                      className="absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-foreground"
+                      whileHover={{ scale: 1.2 }}
+                    />
                     <div className="space-y-2">
                       <div className="text-xs text-muted-foreground">{item.period}</div>
                       <h3 className="text-lg font-medium">{item.title}</h3>
@@ -174,6 +399,8 @@ const AboutPage = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="flex items-center text-2xl font-serif font-bold text-gradient mb-8"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
               >
                 <GraduationCap size={20} className="mr-2" /> Education & Certifications
               </motion.h2>
@@ -187,8 +414,14 @@ const AboutPage = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     className="relative pl-8 border-l border-border/70"
+                    whileHover={{ x: 5 }}
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleHoverExit}
                   >
-                    <span className="absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-foreground"></span>
+                    <motion.span 
+                      className="absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-foreground"
+                      whileHover={{ scale: 1.2 }}
+                    />
                     <div className="space-y-2">
                       <div className="text-xs text-muted-foreground">{item.period}</div>
                       <h3 className="text-lg font-medium">{item.degree}</h3>
@@ -213,8 +446,10 @@ const AboutPage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
               className="flex items-center justify-center text-3xl font-serif font-bold text-gradient mb-6"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleHoverExit}
             >
-              <Award size={24} className="mr-2" /> Beyond Work
+              <Award size={24} className="mr-2" /> {showTeam ? "Team Interests" : "Beyond Work"}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -223,7 +458,10 @@ const AboutPage = () => {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-muted-foreground"
             >
-              When I'm not designing or coding, here are some things I enjoy.
+              {showTeam ? 
+                "Outside of our professional work, our team members pursue various interests and hobbies." :
+                "When I'm not designing or coding, here are some things I enjoy."
+              }
             </motion.p>
           </div>
           
@@ -236,6 +474,13 @@ const AboutPage = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="p-6 rounded-xl neo-blur"
+                whileHover={{ 
+                  scale: 1.03, 
+                  rotate: 1,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHoverExit}
               >
                 <h3 className="text-lg font-medium mb-3">{interest.title}</h3>
                 <p className="text-sm text-muted-foreground">{interest.description}</p>
