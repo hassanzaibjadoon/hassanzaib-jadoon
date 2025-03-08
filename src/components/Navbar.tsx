@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -53,7 +54,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -63,16 +64,20 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <ThemeToggle />
           </nav>
 
-          {/* Mobile Navigation Button */}
-          <button 
-            className="md:hidden text-foreground/80 hover:text-foreground transition-smooth"
-            onClick={toggleNavbar}
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Navigation Button and Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <button 
+              className="text-foreground/80 hover:text-foreground transition-smooth"
+              onClick={toggleNavbar}
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
