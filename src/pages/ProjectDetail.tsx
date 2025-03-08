@@ -1,337 +1,443 @@
 
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Clock, Calendar, User, Tag } from 'lucide-react';
 import Layout from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { 
+  Card, 
+  CardContent
+} from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { 
+  ExternalLink, 
+  ArrowLeft, 
+  Calendar, 
+  Tag, 
+  Users, 
+  Globe,
+  Layers,
+  ListChecks,
+  ArrowUpRight
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-// Mock data - in a real app, you'd fetch this from an API or CMS
+// Animation variants
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+// Mock data for the project detail
 const projectsData = [
   {
-    id: '1',
-    title: 'E-Commerce Redesign',
-    category: 'Web Design & Development',
-    client: 'Retail Company',
-    duration: '3 months',
-    completedDate: 'June 2023',
-    description: 'A complete redesign of an e-commerce platform focused on user experience and conversion optimization.',
-    challenge: 'The client was experiencing high bounce rates and low conversion on their existing e-commerce site. The navigation was confusing, the checkout process was cumbersome, and the overall design was outdated.',
-    solution: 'I conducted extensive user research to identify pain points in the current user journey. Based on these insights, I redesigned the information architecture, simplified the navigation, and created a streamlined checkout process. The new design featured a clean, modern aesthetic with clear product photography and improved product filtering.',
-    results: 'The redesigned platform saw a 35% decrease in bounce rate, a 42% increase in time spent on site, and a 28% improvement in conversion rate within the first three months after launch.',
-    technologies: ['React', 'Node.js', 'Figma', 'Shopify'],
-    nextProjectId: '2',
-    prevProjectId: '6'
+    id: "1",
+    title: "E-Commerce Platform Redesign",
+    client: "Fashion Retailer",
+    date: "2023",
+    category: "UX/UI Design",
+    tags: ["E-commerce", "Mobile App", "Web Design"],
+    description: "Complete redesign of an e-commerce platform focusing on improving user experience, increasing conversion rates, and modernizing the visual identity.",
+    challenge: "The client's existing platform suffered from poor navigation, inconsistent user experience across devices, and low conversion rates. The challenge was to redesign the entire platform while maintaining brand recognition and improving key metrics.",
+    solution: "I developed a comprehensive design strategy focusing on user-centered design principles. Starting with extensive user research and competitive analysis, I created a streamlined information architecture and user flow. The new design features an intuitive navigation system, optimized product pages, and a simplified checkout process.",
+    results: [
+      "42% increase in conversion rate within 3 months after launch",
+      "65% reduction in cart abandonment rate",
+      "28% increase in average session duration",
+      "User satisfaction score improved from 3.2/5 to 4.7/5"
+    ],
+    process: [
+      {
+        phase: "Research & Discovery",
+        description: "Conducted user interviews, surveys, and competitive analysis to understand pain points and opportunities.",
+        deliverables: ["User Personas", "Journey Maps", "Competitive Analysis Report"]
+      },
+      {
+        phase: "UX Design",
+        description: "Developed information architecture, user flows, and wireframes to establish the foundation of the new design.",
+        deliverables: ["Information Architecture", "User Flows", "Low-fidelity Wireframes"]
+      },
+      {
+        phase: "UI Design",
+        description: "Created visual design system, high-fidelity mockups, and interactive prototypes.",
+        deliverables: ["Design System", "High-fidelity Mockups", "Interactive Prototypes"]
+      },
+      {
+        phase: "Testing & Iteration",
+        description: "Conducted usability testing and iterated on the design based on feedback.",
+        deliverables: ["Usability Test Results", "Iteration Documentation", "Final Design Specifications"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "E-Commerce Platform Redesign Preview",
+    link: "https://example.com/project1"
   },
   {
-    id: '2',
-    title: 'Mobile Banking App',
-    category: 'UI/UX Design',
-    client: 'Financial Institution',
-    duration: '4 months',
-    completedDate: 'March 2023',
-    description: 'Modern, intuitive mobile banking application designed with security and user experience in mind.',
-    challenge: 'The client needed to modernize their mobile banking experience to compete with new fintech companies, while maintaining the security and reliability expected of an established financial institution.',
-    solution: 'I developed a user-centered design that simplified complex banking tasks, incorporated biometric authentication, and used clear visual cues to help users understand their financial status at a glance. The design included real-time notifications, customizable dashboards, and an intuitive navigation system.',
-    results: 'The new app received a 4.8/5 rating on app stores, a 67% increase in mobile banking engagement, and a 40% reduction in customer service calls related to app usage.',
-    technologies: ['Figma', 'Sketch', 'Protopie', 'React Native'],
-    nextProjectId: '3',
-    prevProjectId: '1'
-  },
-  {
-    id: '3',
-    title: 'Brand Identity System',
-    category: 'Branding',
-    client: 'Tech Startup',
-    duration: '2 months',
-    completedDate: 'November 2022',
-    description: 'Comprehensive brand identity system including logo, color palette, typography, and guidelines.',
-    challenge: 'The startup was preparing for a significant funding round and market expansion, but their existing brand lacked cohesion and failed to communicate their innovative approach and values.',
-    solution: 'I worked closely with the leadership team to define their brand values and positioning. From there, I developed a distinctive visual identity that reflected the company's forward-thinking approach while ensuring versatility across different applications and mediums.',
-    results: 'The new brand identity helped secure $12M in funding, received industry recognition for its design excellence, and provided a solid foundation for the company's marketing efforts, resulting in increased brand recognition.',
-    technologies: ['Adobe Illustrator', 'Adobe InDesign', 'After Effects'],
-    nextProjectId: '4',
-    prevProjectId: '2'
-  },
-  {
-    id: '4',
-    title: 'Corporate Website',
-    category: 'Web Design',
-    client: 'Consulting Firm',
-    duration: '3 months',
-    completedDate: 'August 2022',
-    description: 'Professional website for a corporate client, focusing on clear communication and brand representation.',
-    challenge: 'The client's existing website failed to effectively communicate their expertise and services, resulting in low engagement and poor lead generation.',
-    solution: 'I restructured the site architecture to better highlight the client's core services and expertise. The new design incorporated case studies, testimonials, and thought leadership content to establish credibility and drive engagement.',
-    results: '42% increase in organic traffic, 57% improvement in lead generation, and a significant reduction in bounce rate, particularly for service pages.',
-    technologies: ['WordPress', 'Figma', 'HTML/CSS', 'JavaScript'],
-    nextProjectId: '5',
-    prevProjectId: '3'
-  },
-  {
-    id: '5',
-    title: 'Product Packaging',
-    category: 'Branding',
-    client: 'Consumer Goods Company',
-    duration: '2 months',
-    completedDate: 'May 2022',
-    description: 'Distinctive packaging design for a consumer product, enhancing shelf presence and brand recognition.',
-    challenge: 'The client was launching a new premium product line but needed packaging that would stand out on crowded retail shelves while communicating the product's quality and value.',
-    solution: 'I developed a packaging design that utilized premium materials, tactile finishes, and a distinctive color palette to create shelf impact. The design incorporated storytelling elements that connected with the target audience and clearly communicated the product's benefits.',
-    results: 'The product exceeded first-year sales projections by 25%, received industry recognition for packaging innovation, and established a strong visual foundation for future product extensions.',
-    technologies: ['Adobe Illustrator', 'Photoshop', '3D Rendering'],
-    nextProjectId: '6',
-    prevProjectId: '4'
-  },
-  {
-    id: '6',
-    title: 'Healthcare Platform',
-    category: 'UI/UX Design',
-    client: 'Healthcare Provider',
-    duration: '5 months',
-    completedDate: 'February 2022',
-    description: 'User-centered design for a healthcare platform, improving patient experience and information accessibility.',
-    challenge: 'The client needed to modernize their patient portal to improve information accessibility, enhance appointment scheduling, and provide better communication channels between patients and healthcare providers.',
-    solution: 'I conducted user research with diverse patient groups to understand their needs and pain points. Based on these insights, I designed an accessible, intuitive interface that simplified navigation, used clear language, and prioritized the most commonly used features.',
-    results: 'The redesigned platform saw a 62% increase in patient portal adoption, 78% improvement in appointment scheduling via the platform, and significantly higher patient satisfaction scores.',
-    technologies: ['Figma', 'React', 'Accessibility Testing', 'User Research'],
-    nextProjectId: '1',
-    prevProjectId: '5'
-  },
+    id: "2",
+    title: "Financial Services Mobile Application",
+    client: "Banking Corporation",
+    date: "2022",
+    category: "Mobile App Design",
+    tags: ["Finance", "Mobile App", "User Experience"],
+    description: "Design of a mobile banking application focused on simplifying financial management for users while ensuring security and compliance with financial regulations.",
+    challenge: "The client wanted to modernize their digital offerings with a mobile app that would appeal to younger demographics while not alienating their traditional customer base. They needed a secure, intuitive interface that would handle complex financial transactions while remaining accessible.",
+    solution: "I designed a clean, accessible interface that guides users through financial tasks with clear visual hierarchies and progressive disclosure of complex features. Security features were integrated seamlessly into the user experience without creating friction.",
+    results: [
+      "Over 100,000 downloads in the first month of launch",
+      "Average rating of 4.8/5 stars on app stores",
+      "User engagement 35% higher than industry average",
+      "38% of users reported using the app daily"
+    ],
+    process: [
+      {
+        phase: "Research & Strategy",
+        description: "Conducted market research, user interviews, and analyzed competitor apps to identify opportunities and constraints.",
+        deliverables: ["Market Research Report", "User Needs Assessment", "Strategic Recommendations"]
+      },
+      {
+        phase: "UX Design",
+        description: "Created information architecture, user flows, and wireframes for key banking features.",
+        deliverables: ["User Flows", "Wireframes", "Navigation Structure"]
+      },
+      {
+        phase: "UI Design",
+        description: "Developed visual design system, high-fidelity screens, and interactive prototypes.",
+        deliverables: ["UI Style Guide", "Screen Designs", "Interactive Prototype"]
+      },
+      {
+        phase: "Testing & Refinement",
+        description: "Conducted usability testing with diverse user groups and refined the design based on feedback.",
+        deliverables: ["Usability Test Results", "Design Iterations", "Final Design Assets"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "Financial Services Mobile Application Preview",
+    link: "https://example.com/project2"
+  }
 ];
 
-const ProjectDetailPage = () => {
+export default function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const project = projectsData.find(p => p.id === id);
+  const [project, setProject] = useState<typeof projectsData[0] | undefined>(undefined);
+  const [activeTab, setActiveTab] = useState<string>('overview');
   
+  useEffect(() => {
+    // In a real app, this would be a data fetch from an API
+    const foundProject = projectsData.find(p => p.id === id);
+    setProject(foundProject);
+    // If project isn't found, you could redirect to a 404 page
+  }, [id]);
+
   if (!project) {
     return (
       <Layout>
-        <div className="container mx-auto px-6 md:px-12 py-20 text-center">
-          <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
+        <div className="container mx-auto px-6 md:px-12 py-12 text-center">
+          <h1 className="text-3xl md:text-4xl font-serif font-semibold text-gradient mb-4">
+            Project Not Found
+          </h1>
           <p className="mb-8">The project you're looking for doesn't exist or has been removed.</p>
-          <Link 
-            to="/projects" 
-            className="inline-flex items-center text-sm font-medium text-foreground link-underline"
-          >
-            <ArrowLeft size={14} className="mr-1" /> Back to Projects
-          </Link>
+          <Button asChild>
+            <Link to="/projects">Back to Projects</Link>
+          </Button>
         </div>
       </Layout>
     );
   }
-  
-  const nextProject = projectsData.find(p => p.id === project.nextProjectId);
-  const prevProject = projectsData.find(p => p.id === project.prevProjectId);
-  
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="py-20 md:py-32">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <Link 
-              to="/projects" 
-              className="inline-flex items-center mb-6 text-sm text-muted-foreground hover:text-foreground transition-smooth"
-            >
-              <ArrowLeft size={14} className="mr-1" /> Back to Projects
-            </Link>
-            
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block py-1 px-3 mb-6 text-xs font-medium bg-muted rounded-full"
-            >
-              {project.category}
-            </motion.span>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-serif font-bold text-gradient leading-tight mb-6"
-            >
-              {project.title}
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg text-muted-foreground mb-10"
-            >
-              {project.description}
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-            >
-              <div className="space-y-1">
-                <div className="flex items-center text-xs text-muted-foreground">
-                  <User size={12} className="mr-1" /> Client
-                </div>
-                <div className="text-sm font-medium">{project.client}</div>
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center text-xs text-muted-foreground">
-                  <Clock size={12} className="mr-1" /> Duration
-                </div>
-                <div className="text-sm font-medium">{project.duration}</div>
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center text-xs text-muted-foreground">
-                  <Calendar size={12} className="mr-1" /> Completed
-                </div>
-                <div className="text-sm font-medium">{project.completedDate}</div>
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center text-xs text-muted-foreground">
-                  <Tag size={12} className="mr-1" /> Technologies
-                </div>
-                <div className="flex flex-wrap gap-1">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="text-xs font-medium py-0.5 px-1.5 bg-muted rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Project Image */}
-      <section className="pb-20">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="aspect-video rounded-xl overflow-hidden"
+      <div className="container mx-auto px-6 md:px-12 py-12">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          className="mb-8"
+        >
+          <Link 
+            to="/projects" 
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6 transition-smooth"
           >
-            <div className="h-full w-full bg-muted flex items-center justify-center">
-              <span className="text-muted-foreground">Project Image</span>
-            </div>
+            <ArrowLeft size={16} className="mr-2" />
+            Back to All Projects
+          </Link>
+          
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
+            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-gradient">
+              {project.title}
+            </h1>
+            
+            <Button asChild variant="outline" className="self-start">
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <ExternalLink size={16} />
+                View Live Project
+              </a>
+            </Button>
+          </div>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="md:col-span-2"
+          >
+            <motion.div variants={fadeIn} className="aspect-video overflow-hidden rounded-lg mb-8">
+              <img 
+                src={project.imageSrc} 
+                alt={project.imageAlt} 
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+            
+            <Tabs 
+              defaultValue="overview" 
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
+              <TabsList className="w-full md:w-auto flex justify-start mb-8 overflow-x-auto pb-2">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="process">Process</TabsTrigger>
+                <TabsTrigger value="results">Results</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="overview">
+                <motion.div
+                  initial="hidden"
+                  animate={activeTab === 'overview' ? 'visible' : 'hidden'}
+                  variants={staggerContainer}
+                  className="space-y-8"
+                >
+                  <motion.div variants={fadeIn}>
+                    <h2 className="text-2xl font-serif font-semibold mb-4">Project Overview</h2>
+                    <p className="text-muted-foreground mb-6">
+                      {project.description}
+                    </p>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                      <Card>
+                        <CardContent className="p-6">
+                          <h3 className="text-xl font-medium mb-4">The Challenge</h3>
+                          <p className="text-muted-foreground">
+                            {project.challenge}
+                          </p>
+                        </CardContent>
+                      </Card>
+                      
+                      <Card>
+                        <CardContent className="p-6">
+                          <h3 className="text-xl font-medium mb-4">The Solution</h3>
+                          <p className="text-muted-foreground">
+                            {project.solution}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </TabsContent>
+              
+              <TabsContent value="process">
+                <motion.div
+                  initial="hidden"
+                  animate={activeTab === 'process' ? 'visible' : 'hidden'}
+                  variants={staggerContainer}
+                  className="space-y-8"
+                >
+                  <motion.div variants={fadeIn}>
+                    <h2 className="text-2xl font-serif font-semibold mb-6">Design Process</h2>
+                    <div className="space-y-8">
+                      {project.process.map((phase, index) => (
+                        <Card key={index}>
+                          <CardContent className="p-6">
+                            <div className="flex items-start gap-4">
+                              <div className="bg-muted rounded-full h-8 w-8 flex items-center justify-center mt-1">
+                                <span className="font-medium text-sm">{index + 1}</span>
+                              </div>
+                              <div>
+                                <h3 className="text-xl font-medium mb-2">{phase.phase}</h3>
+                                <p className="text-muted-foreground mb-4">
+                                  {phase.description}
+                                </p>
+                                
+                                <h4 className="text-sm font-medium mb-2">Deliverables:</h4>
+                                <ul className="list-disc pl-5">
+                                  {phase.deliverables.map((deliverable, idx) => (
+                                    <li key={idx} className="text-sm text-muted-foreground mb-1">
+                                      {deliverable}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </TabsContent>
+              
+              <TabsContent value="results">
+                <motion.div
+                  initial="hidden"
+                  animate={activeTab === 'results' ? 'visible' : 'hidden'}
+                  variants={staggerContainer}
+                  className="space-y-8"
+                >
+                  <motion.div variants={fadeIn}>
+                    <h2 className="text-2xl font-serif font-semibold mb-6">Results & Impact</h2>
+                    <Card>
+                      <CardContent className="p-6">
+                        <p className="text-muted-foreground mb-6">
+                          The final solution delivered exceptional results for the client, meeting and exceeding the initial objectives.
+                        </p>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="text-xl font-medium mb-4">Key Outcomes</h3>
+                            <ul className="space-y-3">
+                              {project.results.map((result, index) => (
+                                <li key={index} className="flex items-start gap-3">
+                                  <div className="flex-shrink-0 mt-1 text-foreground">
+                                    <ListChecks size={18} />
+                                  </div>
+                                  <span className="text-muted-foreground">
+                                    {result}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          <div>
+                            <h3 className="text-xl font-medium mb-4">Testimonial</h3>
+                            <div className="bg-muted p-4 rounded-lg">
+                              <p className="italic text-muted-foreground mb-4">
+                                "The solution exceeded our expectations. Not only did it solve our immediate challenges, but it also set us up for future growth and digital transformation."
+                              </p>
+                              <p className="text-sm font-medium">— Client Representative</p>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </motion.div>
+              </TabsContent>
+            </Tabs>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="md:col-span-1"
+          >
+            <motion.div variants={fadeIn}>
+              <Card className="mb-6">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-medium mb-4">Project Details</h3>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Calendar size={18} className="text-muted-foreground mt-0.5" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Year</p>
+                        <p className="font-medium">{project.date}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <Users size={18} className="text-muted-foreground mt-0.5" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Client</p>
+                        <p className="font-medium">{project.client}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <Layers size={18} className="text-muted-foreground mt-0.5" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Category</p>
+                        <p className="font-medium">{project.category}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <Globe size={18} className="text-muted-foreground mt-0.5" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Website</p>
+                        <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="font-medium hover:underline flex items-center gap-1"
+                        >
+                          View Site
+                          <ArrowUpRight size={14} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+            
+            <motion.div variants={fadeIn}>
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-medium mb-4">Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, index) => (
+                      <div 
+                        key={index}
+                        className="flex items-center gap-1.5 bg-muted px-3 py-1 rounded-full text-xs font-medium"
+                      >
+                        <Tag size={12} />
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </motion.div>
         </div>
-      </section>
-      
-      {/* Project Details */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mx-auto space-y-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h2 className="text-2xl font-serif font-bold">The Challenge</h2>
-              <p className="text-muted-foreground">{project.challenge}</p>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h2 className="text-2xl font-serif font-bold">The Solution</h2>
-              <p className="text-muted-foreground">{project.solution}</p>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h2 className="text-2xl font-serif font-bold">The Results</h2>
-              <p className="text-muted-foreground">{project.results}</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      
-      {/* More Project Images */}
-      <section className="py-20">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="aspect-square rounded-xl overflow-hidden"
-            >
-              <div className="h-full w-full bg-muted flex items-center justify-center">
-                <span className="text-muted-foreground">Project Image</span>
-              </div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="aspect-square rounded-xl overflow-hidden"
-            >
-              <div className="h-full w-full bg-muted flex items-center justify-center">
-                <span className="text-muted-foreground">Project Image</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Next/Previous Project Navigation */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            {prevProject && (
-              <Link 
-                to={`/projects/${prevProject.id}`} 
-                className="group flex items-center py-4 transition-smooth"
-              >
-                <ArrowLeft size={20} className="mr-4 transition-transform group-hover:-translate-x-1" />
-                <div>
-                  <div className="text-xs text-muted-foreground mb-1">Previous Project</div>
-                  <div className="font-medium">{prevProject.title}</div>
-                </div>
-              </Link>
-            )}
-            
-            <div className="hidden md:block">
-              <Link 
-                to="/projects" 
-                className="inline-flex items-center text-sm font-medium text-foreground link-underline"
-              >
-                All Projects
-              </Link>
-            </div>
-            
-            {nextProject && (
-              <Link 
-                to={`/projects/${nextProject.id}`} 
-                className="group flex items-center py-4 transition-smooth text-right"
-              >
-                <div>
-                  <div className="text-xs text-muted-foreground mb-1">Next Project</div>
-                  <div className="font-medium">{nextProject.title}</div>
-                </div>
-                <ArrowRight size={20} className="ml-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            )}
-          </div>
-        </div>
-      </section>
+        
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          className="mt-16 text-center"
+        >
+          <h2 className="text-2xl font-serif font-semibold mb-6">Interested in working together?</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+            Let's discuss how my design services can help your next project succeed.
+          </p>
+          <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90">
+            <Link to="/contact" className="flex items-center gap-2">
+              Get in Touch
+              <ArrowUpRight size={16} />
+            </Link>
+          </Button>
+        </motion.div>
+      </div>
     </Layout>
   );
-};
-
-export default ProjectDetailPage;
+}
