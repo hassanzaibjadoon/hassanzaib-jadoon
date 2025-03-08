@@ -12,7 +12,11 @@ export default function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full w-9 h-9 transition-smooth border-foreground/30 hover:bg-foreground/10"
+      className={`rounded-full w-9 h-9 transition-smooth ${
+        theme === "light" 
+          ? "border-gray-300 bg-white hover:bg-gray-100" 
+          : "border-gray-700 bg-gray-800 hover:bg-gray-700"
+      }`}
     >
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
@@ -22,8 +26,8 @@ export default function ThemeToggle() {
         key={theme}
       >
         {theme === "light" ? 
-          <Moon size={18} className="text-foreground" /> : 
-          <Sun size={18} className="text-foreground" />
+          <Moon size={18} className="text-gray-700" /> : 
+          <Sun size={18} className="text-yellow-300" />
         }
       </motion.div>
       <span className="sr-only">Toggle theme</span>

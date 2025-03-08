@@ -39,12 +39,18 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       // Ensure text contrast in light mode
       document.documentElement.style.setProperty('--muted-foreground', '240 3.8% 36.1%');
       document.documentElement.style.setProperty('--foreground', '240 10% 3.9%');
-      document.documentElement.style.setProperty('--border', '240 5.9% 80%');
+      document.documentElement.style.setProperty('--border', '240 5.9% 90%');
+      document.documentElement.style.setProperty('--background', '0 0% 100%');
+      document.documentElement.style.setProperty('--card', '0 0% 100%');
+      document.documentElement.style.setProperty('--card-foreground', '240 10% 3.9%');
     } else {
       // Reset to dark mode values
       document.documentElement.style.setProperty('--muted-foreground', '240 5% 64.9%');
       document.documentElement.style.setProperty('--foreground', '0 0% 98%');
       document.documentElement.style.setProperty('--border', '240 3.7% 15.9%');
+      document.documentElement.style.setProperty('--background', '240 10% 3.9%');
+      document.documentElement.style.setProperty('--card', '240 10% 3.9%');
+      document.documentElement.style.setProperty('--card-foreground', '0 0% 98%');
     }
   }, [theme]);
 

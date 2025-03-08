@@ -5,8 +5,11 @@ import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
+import { useTheme } from '@/components/ThemeProvider';
 
 const AboutPage = () => {
+  // State for theme
+  const { theme } = useTheme();
   // State for team toggle
   const [showTeam, setShowTeam] = useState(false);
   // State for chat bot
@@ -17,7 +20,7 @@ const AboutPage = () => {
 
   // Track mouse position for cursor animation
   useEffect(() => {
-    const mouseMove = (e) => {
+    const mouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX,
         y: e.clientY
@@ -31,21 +34,21 @@ const AboutPage = () => {
     };
   }, []);
 
-  // Cursor variants for framer-motion - fixed to use proper typing for mixBlendMode
+  // Cursor variants for framer-motion with proper typing
   const cursorVariants = {
     default: {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
-      backgroundColor: "rgba(255, 255, 255, 0.2)",
-      mixBlendMode: "difference" as const
+      backgroundColor: theme === "light" ? "var(--cursor-color)" : "rgba(255, 255, 255, 0.2)",
+      mixBlendMode: theme === "light" ? "normal" : "difference" as const
     },
     hover: {
       height: 64,
       width: 64,
       x: mousePosition.x - 32,
       y: mousePosition.y - 32,
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
-      mixBlendMode: "difference" as const
+      backgroundColor: theme === "light" ? "var(--cursor-hover-color)" : "rgba(255, 255, 255, 0.1)",
+      mixBlendMode: theme === "light" ? "normal" : "difference" as const
     }
   };
 
