@@ -9,10 +9,10 @@ export default function ThemeToggle() {
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full w-9 h-9 transition-smooth"
+      className="rounded-full w-9 h-9 transition-smooth border-foreground/30 hover:bg-foreground/10"
     >
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
@@ -21,7 +21,10 @@ export default function ThemeToggle() {
         transition={{ duration: 0.2 }}
         key={theme}
       >
-        {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+        {theme === "light" ? 
+          <Moon size={18} className="text-foreground" /> : 
+          <Sun size={18} className="text-foreground" />
+        }
       </motion.div>
       <span className="sr-only">Toggle theme</span>
     </Button>
