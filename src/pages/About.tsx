@@ -31,13 +31,13 @@ const AboutPage = () => {
     };
   }, []);
 
-  // Cursor variants for framer-motion
+  // Cursor variants for framer-motion - fixed to use proper typing for mixBlendMode
   const cursorVariants = {
     default: {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
       backgroundColor: "rgba(255, 255, 255, 0.2)",
-      mixBlendMode: "difference"
+      mixBlendMode: "difference" as const
     },
     hover: {
       height: 64,
@@ -45,7 +45,7 @@ const AboutPage = () => {
       x: mousePosition.x - 32,
       y: mousePosition.y - 32,
       backgroundColor: "rgba(255, 255, 255, 0.1)",
-      mixBlendMode: "difference"
+      mixBlendMode: "difference" as const
     }
   };
 
