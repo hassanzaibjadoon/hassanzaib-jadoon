@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/ThemeProvider';
+import CustomCursor from '@/components/CustomCursor';
 
+// Define MixBlendMode type to fix TypeScript error
 type MixBlendMode = 
   | 'normal' 
   | 'multiply' 
@@ -28,53 +30,10 @@ const AboutPage = () => {
   const { theme } = useTheme();
   const [showTeam, setShowTeam] = useState(false);
   const [showChatBot, setShowChatBot] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState("default");
-
-  useEffect(() => {
-    const mouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
-    };
-
-    window.addEventListener("mousemove", mouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-    };
-  }, []);
-
-  const cursorVariants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      width: 32,
-      height: 32,
-      backgroundColor: theme === "light" ? "var(--cursor-color)" : "var(--cursor-color)",
-      mixBlendMode: (theme === "light" ? "normal" : "difference") as MixBlendMode
-    },
-    hover: {
-      height: 64,
-      width: 64,
-      x: mousePosition.x - 32,
-      y: mousePosition.y - 32,
-      backgroundColor: theme === "light" ? "var(--cursor-hover-color)" : "var(--cursor-hover-color)",
-      mixBlendMode: (theme === "light" ? "normal" : "difference") as MixBlendMode
-    }
-  };
-
-  const handleHover = () => setCursorVariant("hover");
-  const handleHoverExit = () => setCursorVariant("default");
 
   return (
     <Layout>
-      <motion.div 
-        className={`custom-cursor hidden md:block ${theme}`}
-        variants={cursorVariants}
-        animate={cursorVariant}
-      />
+      <CustomCursor />
 
       <motion.div 
         className="fixed bottom-8 right-8 z-40"
@@ -84,11 +43,9 @@ const AboutPage = () => {
       >
         <Button 
           onClick={() => setShowChatBot(!showChatBot)}
-          className="rounded-full w-14 h-14 flex items-center justify-center shadow-lg"
+          className="rounded-full w-14 h-14 flex items-center justify-center shadow-lg sparkle-effect"
           variant="secondary"
           size="icon"
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHoverExit}
         >
           <MessageSquare size={24} />
         </Button>
@@ -140,9 +97,7 @@ const AboutPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-serif font-bold text-gradient leading-tight mb-6"
-              onMouseEnter={handleHover}
-              onMouseLeave={handleHoverExit}
+              className="text-4xl md:text-5xl font-serif font-bold text-gradient leading-tight mb-6 hover-glow"
             >
               My journey & expertise
             </motion.h1>
@@ -164,9 +119,7 @@ const AboutPage = () => {
               <Button 
                 onClick={() => setShowTeam(!showTeam)} 
                 variant="outline" 
-                className="flex items-center gap-2 mb-8"
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
+                className="flex items-center gap-2 mb-8 border-glow"
               >
                 {showTeam ? <Users size={16} /> : <User size={16} />}
                 {showTeam ? "View Individual" : "View Team"}
@@ -184,7 +137,7 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-xl overflow-hidden"
+              className="aspect-square rounded-xl overflow-hidden perspective-card"
             >
               {showTeam ? (
                 <motion.div 
@@ -196,11 +149,9 @@ const AboutPage = () => {
                   {[1, 2, 3, 4].map((item) => (
                     <motion.div 
                       key={item} 
-                      className="bg-background/40 rounded-lg flex items-center justify-center"
+                      className="bg-background/40 rounded-lg flex items-center justify-center shine-effect hover-trigger"
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 300 }}
-                      onMouseEnter={handleHover}
-                      onMouseLeave={handleHoverExit}
                     >
                       <span className="text-muted-foreground text-sm">Team Member {item}</span>
                     </motion.div>
@@ -211,13 +162,11 @@ const AboutPage = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="h-full w-full bg-muted flex items-center justify-center"
+                  className="h-full w-full bg-muted flex items-center justify-center sparkle-effect"
                   whileHover={{ 
                     scale: 1.02,
                     transition: { duration: 0.3 }
                   }}
-                  onMouseEnter={handleHover}
-                  onMouseLeave={handleHoverExit}
                 >
                   <span className="text-muted-foreground">Profile Image</span>
                 </motion.div>
@@ -232,10 +181,8 @@ const AboutPage = () => {
               className="space-y-6"
             >
               <motion.h2 
-                className="text-3xl font-serif font-bold text-gradient"
+                className="text-3xl font-serif font-bold text-gradient hover-glow"
                 whileHover={{ scale: 1.02 }}
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
               >
                 {showTeam ? "Our Story" : "My Story"}
               </motion.h2>
@@ -280,9 +227,7 @@ const AboutPage = () => {
               </div>
               <Link 
                 to="/contact" 
-                className="inline-flex items-center text-sm font-medium text-foreground link-underline"
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
+                className="inline-flex items-center text-sm font-medium text-foreground link-underline hover-trigger"
               >
                 {showTeam ? "Contact Us" : "Let's Connect"} <ArrowRight size={14} className="ml-1" />
               </Link>
@@ -299,9 +244,7 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-serif font-bold text-gradient mb-6"
-              onMouseEnter={handleHover}
-              onMouseLeave={handleHoverExit}
+              className="text-3xl md:text-4xl font-serif font-bold text-gradient mb-6 hover-glow"
             >
               {showTeam ? "Our Expertise" : "Skills & Expertise"}
             </motion.h2>
@@ -327,14 +270,12 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="p-4 rounded-lg neo-blur text-center"
+                className="p-4 rounded-lg neo-blur text-center sparkle-effect hover-trigger"
                 whileHover={{ 
                   scale: 1.05, 
                   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                   transition: { type: "spring", stiffness: 400, damping: 10 }
                 }}
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
               >
                 <span className="text-sm font-medium">{skill}</span>
               </motion.div>
@@ -352,9 +293,7 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="flex items-center text-2xl font-serif font-bold text-gradient mb-8"
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
+                className="flex items-center text-2xl font-serif font-bold text-gradient mb-8 hover-glow"
               >
                 <Briefcase size={20} className="mr-2" /> {showTeam ? "Our Experience" : "Professional Experience"}
               </motion.h2>
@@ -367,10 +306,8 @@ const AboutPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative pl-8 border-l border-border/70"
+                    className="relative pl-8 border-l border-border/70 hover-trigger"
                     whileHover={{ x: 5 }}
-                    onMouseEnter={handleHover}
-                    onMouseLeave={handleHoverExit}
                   >
                     <motion.span 
                       className="absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-foreground"
@@ -393,9 +330,7 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="flex items-center text-2xl font-serif font-bold text-gradient mb-8"
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
+                className="flex items-center text-2xl font-serif font-bold text-gradient mb-8 hover-glow"
               >
                 <GraduationCap size={20} className="mr-2" /> Education & Certifications
               </motion.h2>
@@ -408,10 +343,8 @@ const AboutPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative pl-8 border-l border-border/70"
+                    className="relative pl-8 border-l border-border/70 hover-trigger"
                     whileHover={{ x: 5 }}
-                    onMouseEnter={handleHover}
-                    onMouseLeave={handleHoverExit}
                   >
                     <motion.span 
                       className="absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-foreground"
@@ -439,9 +372,7 @@ const AboutPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center text-3xl font-serif font-bold text-gradient mb-6"
-              onMouseEnter={handleHover}
-              onMouseLeave={handleHoverExit}
+              className="flex items-center justify-center text-3xl font-serif font-bold text-gradient mb-6 hover-glow"
             >
               <Award size={24} className="mr-2" /> {showTeam ? "Team Interests" : "Beyond Work"}
             </motion.h2>
@@ -467,14 +398,12 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="p-6 rounded-xl neo-blur"
+                className="p-6 rounded-xl neo-blur blur-bg hover-trigger"
                 whileHover={{ 
                   scale: 1.03, 
                   rotate: 1,
                   transition: { type: "spring", stiffness: 300 }
                 }}
-                onMouseEnter={handleHover}
-                onMouseLeave={handleHoverExit}
               >
                 <h3 className="text-lg font-medium mb-3">{interest.title}</h3>
                 <p className="text-sm text-muted-foreground">{interest.description}</p>

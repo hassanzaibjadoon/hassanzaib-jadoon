@@ -12,7 +12,7 @@ export default function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className={`rounded-full w-9 h-9 transition-smooth ${
+      className={`rounded-full w-9 h-9 transition-smooth shine-effect ${
         theme === "light" 
           ? "border-gray-400 bg-white hover:bg-gray-100 shadow-sm" 
           : "border-gray-700 bg-gray-800 hover:bg-gray-700 shadow-md"
