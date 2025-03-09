@@ -14,8 +14,8 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className={`rounded-full w-9 h-9 transition-smooth ${
         theme === "light" 
-          ? "border-gray-300 bg-white hover:bg-gray-100" 
-          : "border-gray-700 bg-gray-800 hover:bg-gray-700"
+          ? "border-gray-400 bg-white hover:bg-gray-100 shadow-sm" 
+          : "border-gray-700 bg-gray-800 hover:bg-gray-700 shadow-md"
       }`}
     >
       <motion.div
@@ -27,7 +27,7 @@ export default function ThemeToggle() {
         className="flex items-center justify-center"
       >
         {theme === "light" ? 
-          <Moon size={18} className="text-gray-700" /> : 
+          <Moon size={18} className="text-gray-800" /> : 
           <Sun size={18} className="text-yellow-300" />
         }
       </motion.div>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare } from 'lucide-react';
@@ -26,17 +25,12 @@ type MixBlendMode =
   | 'luminosity';
 
 const AboutPage = () => {
-  // State for theme
   const { theme } = useTheme();
-  // State for team toggle
   const [showTeam, setShowTeam] = useState(false);
-  // State for chat bot
   const [showChatBot, setShowChatBot] = useState(false);
-  // State for cursor position
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState("default");
 
-  // Track mouse position for cursor animation
   useEffect(() => {
     const mouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -52,12 +46,13 @@ const AboutPage = () => {
     };
   }, []);
 
-  // Cursor variants for framer-motion with proper typing
   const cursorVariants = {
     default: {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
-      backgroundColor: theme === "light" ? "var(--cursor-color)" : "rgba(255, 255, 255, 0.2)",
+      width: 32,
+      height: 32,
+      backgroundColor: theme === "light" ? "var(--cursor-color)" : "var(--cursor-color)",
       mixBlendMode: (theme === "light" ? "normal" : "difference") as MixBlendMode
     },
     hover: {
@@ -65,35 +60,22 @@ const AboutPage = () => {
       width: 64,
       x: mousePosition.x - 32,
       y: mousePosition.y - 32,
-      backgroundColor: theme === "light" ? "var(--cursor-hover-color)" : "rgba(255, 255, 255, 0.1)",
+      backgroundColor: theme === "light" ? "var(--cursor-hover-color)" : "var(--cursor-hover-color)",
       mixBlendMode: (theme === "light" ? "normal" : "difference") as MixBlendMode
     }
   };
 
-  // Function to handle cursor hover
   const handleHover = () => setCursorVariant("hover");
   const handleHoverExit = () => setCursorVariant("default");
 
   return (
     <Layout>
-      {/* Custom cursor animation */}
       <motion.div 
-        className="custom-cursor hidden md:block"
+        className={`custom-cursor hidden md:block ${theme}`}
         variants={cursorVariants}
         animate={cursorVariant}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          height: 32,
-          width: 32,
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: 999
-        }}
       />
 
-      {/* Chat bot toggle button */}
       <motion.div 
         className="fixed bottom-8 right-8 z-40"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -112,7 +94,6 @@ const AboutPage = () => {
         </Button>
       </motion.div>
 
-      {/* Chat bot panel */}
       {showChatBot && (
         <motion.div 
           className="fixed bottom-24 right-8 w-80 bg-card rounded-xl shadow-xl z-40 overflow-hidden"
@@ -143,7 +124,6 @@ const AboutPage = () => {
         </motion.div>
       )}
 
-      {/* Hero Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
@@ -176,7 +156,6 @@ const AboutPage = () => {
               A passionate professional dedicated to creating exceptional digital experiences through design and innovation.
             </motion.p>
 
-            {/* Team Toggle Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -197,7 +176,6 @@ const AboutPage = () => {
         </div>
       </section>
       
-      {/* Bio Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -313,7 +291,6 @@ const AboutPage = () => {
         </div>
       </section>
       
-      {/* Skills Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-20">
@@ -366,11 +343,9 @@ const AboutPage = () => {
         </div>
       </section>
       
-      {/* Experience & Education Section */}
       <section className="py-20 md:py-32 bg-muted/30">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Experience */}
             <div>
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
@@ -412,7 +387,6 @@ const AboutPage = () => {
               </div>
             </div>
             
-            {/* Education */}
             <div>
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
@@ -457,7 +431,6 @@ const AboutPage = () => {
         </div>
       </section>
       
-      {/* Personal Interests */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
@@ -514,7 +487,6 @@ const AboutPage = () => {
   );
 };
 
-// Mock Data
 const skills = [
   'UI/UX Design',
   'Web Development',
