@@ -61,7 +61,16 @@ const CustomCursor = () => {
       className={`custom-cursor hidden md:block ${theme} ${isHovering ? 'hover' : ''}`}
       style={{
         left: `${mousePosition.x}px`,
-        top: `${mousePosition.y}px`
+        top: `${mousePosition.y}px`,
+        position: 'fixed',
+        pointerEvents: 'none',
+        zIndex: 9999,
+        width: isHovering ? 'var(--cursor-hover-size)' : 'var(--cursor-size)',
+        height: isHovering ? 'var(--cursor-hover-size)' : 'var(--cursor-size)',
+        borderRadius: '50%',
+        backgroundColor: theme === 'light' ? 'var(--cursor-color)' : 'var(--cursor-color)',
+        transform: 'translate(-50%, -50%)',
+        transition: 'width 0.3s, height 0.3s, background-color 0.3s'
       }}
     />
   );

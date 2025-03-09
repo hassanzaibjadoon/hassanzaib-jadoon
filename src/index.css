@@ -133,38 +133,8 @@
   
   .custom-cursor {
     pointer-events: none;
-    z-index: 9999;
-    position: fixed;
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
   }
 
-  /* Light mode specific cursor styles */
-  .light .custom-cursor {
-    background-color: var(--cursor-color);
-  }
-
-  .light .custom-cursor.hover {
-    width: var(--cursor-hover-size);
-    height: var(--cursor-hover-size);
-    background-color: var(--cursor-hover-color);
-  }
-
-  /* Dark mode specific cursor styles */
-  .dark .custom-cursor {
-    background-color: var(--cursor-color);
-  }
-
-  .dark .custom-cursor.hover {
-    width: var(--cursor-hover-size);
-    height: var(--cursor-hover-size);
-    background-color: var(--cursor-hover-color);
-  }
-
-  /* Hover effects */
   .hover-glow {
     position: relative;
     overflow: hidden;
@@ -381,3 +351,4 @@
     }
   }
 }
+
