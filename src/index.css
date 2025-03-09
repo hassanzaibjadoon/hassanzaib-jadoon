@@ -33,11 +33,6 @@
     --ring: 240 5.9% 10%;
     
     --radius: 1rem;
-
-    --cursor-color: rgba(0, 0, 0, 0.7);
-    --cursor-hover-color: rgba(0, 0, 0, 0.5);
-    --cursor-size: 32px;
-    --cursor-hover-size: 64px;
   }
   
   .dark {
@@ -68,11 +63,6 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
-
-    --cursor-color: rgba(255, 255, 255, 0.7);
-    --cursor-hover-color: rgba(255, 255, 255, 0.5);
-    --cursor-size: 32px;
-    --cursor-hover-size: 64px;
   }
   
   * {
@@ -82,23 +72,10 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-    cursor: none;
   }
   
   html {
     @apply scroll-smooth;
-  }
-
-  @media (max-width: 768px) {
-    body {
-      cursor: auto;
-    }
-  }
-
-  a, button, input, textarea, select, [role="button"] {
-    @media (max-width: 768px) {
-      cursor: pointer;
-    }
   }
 }
 
@@ -351,4 +328,3 @@
     }
   }
 }
-
