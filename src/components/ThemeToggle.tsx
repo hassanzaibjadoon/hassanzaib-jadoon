@@ -24,6 +24,7 @@ export default function ThemeToggle() {
         exit={{ scale: 0.5, opacity: 0 }}
         transition={{ duration: 0.2 }}
         key={theme}
+        className="flex items-center justify-center"
       >
         {theme === "light" ? 
           <Moon size={18} className="text-gray-700" /> : 

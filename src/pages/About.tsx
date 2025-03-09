@@ -7,6 +7,24 @@ import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/ThemeProvider';
 
+type MixBlendMode = 
+  | 'normal' 
+  | 'multiply' 
+  | 'screen' 
+  | 'overlay' 
+  | 'darken' 
+  | 'lighten' 
+  | 'color-dodge' 
+  | 'color-burn' 
+  | 'hard-light' 
+  | 'soft-light' 
+  | 'difference' 
+  | 'exclusion' 
+  | 'hue' 
+  | 'saturation' 
+  | 'color' 
+  | 'luminosity';
+
 const AboutPage = () => {
   // State for theme
   const { theme } = useTheme();
@@ -40,7 +58,7 @@ const AboutPage = () => {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
       backgroundColor: theme === "light" ? "var(--cursor-color)" : "rgba(255, 255, 255, 0.2)",
-      mixBlendMode: theme === "light" ? "normal" : "difference" as const
+      mixBlendMode: (theme === "light" ? "normal" : "difference") as MixBlendMode
     },
     hover: {
       height: 64,
@@ -48,7 +66,7 @@ const AboutPage = () => {
       x: mousePosition.x - 32,
       y: mousePosition.y - 32,
       backgroundColor: theme === "light" ? "var(--cursor-hover-color)" : "rgba(255, 255, 255, 0.1)",
-      mixBlendMode: theme === "light" ? "normal" : "difference" as const
+      mixBlendMode: (theme === "light" ? "normal" : "difference") as MixBlendMode
     }
   };
 
