@@ -1,11 +1,11 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare } from 'lucide-react';
+import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/ThemeProvider';
+import { Card, CardContent } from '@/components/ui/card';
 
 // Define MixBlendMode type to fix TypeScript error
 type MixBlendMode = 
@@ -33,6 +33,7 @@ const AboutPage = () => {
 
   return (
     <Layout>
+      {/* Chat Bot Button */}
       <motion.div 
         className="fixed bottom-8 right-8 z-40"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -79,6 +80,7 @@ const AboutPage = () => {
         </motion.div>
       )}
 
+      {/* About Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
@@ -126,7 +128,8 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-      
+
+      {/* Story Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -234,6 +237,7 @@ const AboutPage = () => {
         </div>
       </section>
       
+      {/* Skills Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-20">
@@ -282,6 +286,7 @@ const AboutPage = () => {
         </div>
       </section>
       
+      {/* Experience Section */}
       <section className="py-20 md:py-32 bg-muted/30">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -362,6 +367,7 @@ const AboutPage = () => {
         </div>
       </section>
       
+      {/* Beyond Work Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
@@ -405,6 +411,71 @@ const AboutPage = () => {
               >
                 <h3 className="text-lg font-medium mb-3">{interest.title}</h3>
                 <p className="text-sm text-muted-foreground">{interest.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Reviews Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center text-3xl font-serif font-bold text-gradient mb-6 hover-glow"
+            >
+              <Star size={24} className="mr-2" /> Client Reviews
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-muted-foreground"
+            >
+              What clients say about my services and collaborative approach
+            </motion.p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {clientReviews.map((review, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full neo-blur hover-trigger">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="flex mr-2">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            size={16} 
+                            className={`${i < review.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-muted-foreground ml-1">{review.date}</span>
+                    </div>
+                    <p className="text-sm mb-4">{review.text}</p>
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
+                        {review.name.charAt(0)}
+                      </div>
+                      <div className="ml-3">
+                        <h4 className="text-sm font-medium">{review.name}</h4>
+                        <p className="text-xs text-muted-foreground">{review.title}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -484,6 +555,30 @@ const interests = [
     title: 'Research & Development',
     description: 'Contributing to research efforts in IoT, cybersecurity, and artificial intelligence applications.',
   },
+];
+
+const clientReviews = [
+  {
+    name: "Tom North",
+    title: "Job Seeker",
+    rating: 5,
+    date: "August 1, 2024",
+    text: "Hassan is a consummate professional. I believe his expertise, especially with ATS, will effectively support my job search. I highly recommend his services."
+  },
+  {
+    name: "Oben Eyonganyo",
+    title: "Client",
+    rating: 5,
+    date: "July 22, 2024",
+    text: "Hassan is very hardworking, resilient, and patient. He executed top-notch work with great knowledge and expertise. He asks the right questions, welcomes feedback, and makes necessary alterations without hesitation. I will 100% recommend him to my family, friends, and loved ones."
+  },
+  {
+    name: "Joe Robinson",
+    title: "Collaborator",
+    rating: 5,
+    date: "June 7, 2024",
+    text: "Hassan Zaib Jadoon is a professional and a pleasure to work with. Very knowledgeable, understanding, and easy to collaborate with. Would absolutely recommend him."
+  }
 ];
 
 export default AboutPage;
