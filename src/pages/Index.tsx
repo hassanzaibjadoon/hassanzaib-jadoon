@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, ExternalLink, MessageSquare } from 'lucide-react';
+import { ArrowRight, ChevronDown, ExternalLink, MessageSquare, Code, Users, Book } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 
@@ -34,7 +34,7 @@ const HomePage = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gradient leading-tight mb-6"
             >
-              Creating exceptional digital experiences
+              Hassan Zaib Jadoon
             </motion.h1>
             
             <motion.p 
@@ -43,7 +43,7 @@ const HomePage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl"
             >
-              A showcase of creative work, skills, and services focused on delivering elegant solutions to complex problems.
+              Community Manager focused on Project Coordination and People Management, with expertise in team leadership, strategic planning, and organizational development.
             </motion.p>
             
             <motion.div 
@@ -102,7 +102,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-muted-foreground"
             >
-              A selection of my most remarkable work, showcasing creativity, technical skill, and problem-solving abilities.
+              A selection of my most remarkable work, showcasing leadership, technical skills, and problem-solving abilities.
             </motion.p>
           </div>
           
@@ -118,7 +118,7 @@ const HomePage = () => {
               >
                 <div className="aspect-video overflow-hidden">
                   <div className="h-full w-full bg-muted flex items-center justify-center">
-                    <span className="text-muted-foreground">Project Image</span>
+                    <project.icon size={48} className="text-muted-foreground" />
                   </div>
                 </div>
                 <div className="p-6">
@@ -167,7 +167,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-muted-foreground"
             >
-              Specialized expertise to help you achieve your goals and create exceptional digital experiences.
+              Specialized expertise to help organizations achieve their goals through effective management and technical solutions.
             </motion.p>
           </div>
           
@@ -209,7 +209,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-serif font-bold text-gradient mb-6"
             >
-              Ready to create something exceptional?
+              Ready to collaborate?
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -218,7 +218,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="text-lg text-muted-foreground mb-8"
             >
-              Let's collaborate to bring your vision to life. Reach out to discuss your project needs and how we can work together.
+              Let's work together to achieve your organizational goals through effective project management and community leadership.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -244,42 +244,45 @@ const HomePage = () => {
 const featuredProjects = [
   {
     id: '1',
-    title: 'E-Commerce Redesign',
-    category: 'Web Design & Development',
-    description: 'A complete redesign of an e-commerce platform focused on user experience and conversion optimization.',
+    title: 'FS Workshops & Pitch',
+    category: 'Community Management',
+    description: 'Organized and led workshops focused on developing professional skills and project pitching techniques.',
+    icon: Users
   },
   {
     id: '2',
-    title: 'Mobile Banking App',
-    category: 'UI/UX Design',
-    description: 'Modern, intuitive mobile banking application designed with security and user experience in mind.',
+    title: 'Ambassadors 2025',
+    category: 'Leadership & Management',
+    description: 'Coordinated the selection and management of ambassadors representing the organization.',
+    icon: Users
   },
   {
     id: '3',
-    title: 'Brand Identity System',
-    category: 'Branding',
-    description: 'Comprehensive brand identity system including logo, color palette, typography, and guidelines.',
+    title: 'Process Management Tool',
+    category: 'Software Development',
+    description: 'Developed a tool to streamline organizational processes and improve efficiency.',
+    icon: Code
   },
 ];
 
 const services = [
   {
     id: '1',
-    title: 'UI/UX Design',
-    description: 'Creating intuitive, user-centered designs that enhance user experience and drive engagement.',
-    icon: MessageSquare,
+    title: 'Community Management',
+    description: 'Building and managing vibrant communities through strategic planning, engagement initiatives, and performance tracking.',
+    icon: Users,
   },
   {
     id: '2',
-    title: 'Web Development',
-    description: 'Building responsive, performant, and accessible websites using modern technologies and best practices.',
+    title: 'Project Coordination',
+    description: 'Organizing and overseeing projects from inception to completion, ensuring efficient resource allocation and timely delivery.',
     icon: ArrowRight,
   },
   {
     id: '3',
-    title: 'Brand Strategy',
-    description: 'Developing comprehensive brand strategies that align with business goals and resonate with target audiences.',
-    icon: ExternalLink,
+    title: 'Documentation & Research',
+    description: 'Creating comprehensive documentation and conducting thorough research to support informed decision-making.',
+    icon: Book,
   },
 ];
 

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare } from 'lucide-react';
@@ -5,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/ThemeProvider';
-import CustomCursor from '@/components/CustomCursor';
 
 // Define MixBlendMode type to fix TypeScript error
 type MixBlendMode = 
@@ -33,8 +33,6 @@ const AboutPage = () => {
 
   return (
     <Layout>
-      <CustomCursor />
-
       <motion.div 
         className="fixed bottom-8 right-8 z-40"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -108,7 +106,7 @@ const AboutPage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-muted-foreground mb-10"
             >
-              A passionate professional dedicated to creating exceptional digital experiences through design and innovation.
+              A passionate community manager dedicated to fostering collaboration, optimizing team performance, and achieving organizational goals through effective leadership.
             </motion.p>
 
             <motion.div
@@ -168,7 +166,7 @@ const AboutPage = () => {
                     transition: { duration: 0.3 }
                   }}
                 >
-                  <span className="text-muted-foreground">Profile Image</span>
+                  <span className="text-muted-foreground">Hassan Zaib Jadoon</span>
                 </motion.div>
               )}
             </motion.div>
@@ -214,13 +212,13 @@ const AboutPage = () => {
                 ) : (
                   <>
                     <p>
-                      With over 10 years of experience in the creative industry, I've dedicated my career to solving complex problems through thoughtful design and innovative solutions.
+                      As a Community Manager at The Order of Pen, I've dedicated myself to building effective teams and fostering collaborative environments that drive organizational success.
                     </p>
                     <p>
-                      My approach combines technical expertise with a deep understanding of user needs, allowing me to create digital experiences that are both beautiful and functional.
+                      My approach combines strong leadership skills with technical knowledge, allowing me to coordinate complex projects while ensuring clear communication and documentation.
                     </p>
                     <p>
-                      I believe that great design should be accessible to all and strive to create work that makes a positive impact on the world.
+                      I believe that effective management is about empowering team members and creating systems that enable everyone to contribute their best work toward shared goals.
                     </p>
                   </>
                 )}
@@ -256,8 +254,8 @@ const AboutPage = () => {
               className="max-w-2xl mx-auto text-muted-foreground"
             >
               {showTeam ? 
-                "Our combined skill set covers all aspects of digital product design and development." :
-                "A comprehensive set of skills developed through years of professional experience and continuous learning."
+                "Our combined skill set covers all aspects of project management and community leadership." :
+                "A comprehensive set of skills developed through professional experience and continuous learning."
               }
             </motion.p>
           </div>
@@ -385,7 +383,7 @@ const AboutPage = () => {
             >
               {showTeam ? 
                 "Outside of our professional work, our team members pursue various interests and hobbies." :
-                "When I'm not designing or coding, here are some things I enjoy."
+                "When I'm not managing projects or coordinating teams, here are some things I enjoy."
               }
             </motion.p>
           </div>
@@ -417,74 +415,74 @@ const AboutPage = () => {
 };
 
 const skills = [
-  'UI/UX Design',
-  'Web Development',
-  'Brand Strategy',
-  'User Research',
-  'Wireframing',
-  'Prototyping',
-  'HTML/CSS',
-  'JavaScript',
-  'React',
-  'Figma',
-  'Adobe Creative Suite',
-  'Responsive Design',
+  'Project Management',
+  'Team Coordination',
+  'Community Leadership',
+  'Strategic Planning',
+  'People Management',
+  'Data Analysis',
+  'Technical Writing',
+  'Documentation',
+  'Performance Evaluation',
+  'Communication',
+  'Collaboration Tools',
+  'Risk Assessment',
 ];
 
 const experience = [
   {
-    period: '2019 - Present',
-    title: 'Senior UX Designer',
-    company: 'Design Studio',
-    description: 'Leading design initiatives for major clients, overseeing project teams, and establishing design systems.',
+    period: '09/2024 - Present',
+    title: 'Community Manager',
+    company: 'The Order of Pen',
+    description: 'Leading ambassador selection and management, supervising 60 organization members across different projects, and ensuring effective communication and documentation.',
   },
   {
-    period: '2016 - 2019',
-    title: 'UI/UX Designer',
-    company: 'Tech Company',
-    description: 'Created user interfaces for web and mobile applications, conducted user research, and developed wireframes and prototypes.',
+    period: '04/2024 - 11/2024',
+    title: 'Research Analyst',
+    company: 'Server4Sale',
+    description: 'Conducted research on data scraping, created data visualizations, and contributed to market research and cybersecurity enhancements.',
   },
   {
-    period: '2014 - 2016',
-    title: 'Web Designer',
-    company: 'Digital Agency',
-    description: 'Designed responsive websites for clients across various industries, focusing on accessibility and user experience.',
+    period: '07/2023 - 09/2024',
+    title: 'Researcher',
+    company: 'SECURED IOT DEVICES LAB',
+    description: 'Assisted researchers in studying cryptographic tools and exploring applications for data security enhancement.',
   },
 ];
 
 const education = [
   {
-    period: '2010 - 2014',
-    degree: 'Bachelor of Design',
-    institution: 'Design University',
-    description: 'Specialized in interactive design with a focus on digital products and user experience.',
+    period: '10/2022 - Present',
+    degree: 'Computer Systems Engineering',
+    institution: 'University of Engineering and Technology Peshawar',
+    description: 'Studying computer systems engineering with a focus on practical applications and system development.',
   },
   {
-    period: '2017',
-    degree: 'UX Certification',
-    institution: 'Design Academy',
-    description: 'Advanced certification in user experience methodologies and research techniques.',
+    period: '2024',
+    degree: 'Project Management Certifications',
+    institution: 'Microsoft, Google, PMI',
+    description: 'Career Essentials in Project Management, Project Management Foundations, Project Initiation, and Project Planning.',
   },
   {
-    period: '2019',
-    degree: 'Front-End Development',
-    institution: 'Tech Institute',
-    description: 'Professional certification in modern front-end development frameworks and practices.',
+    period: '2023',
+    degree: 'Google AI Essentials',
+    institution: 'Google',
+    description: 'Certification in AI fundamentals and applications.',
   },
 ];
 
 const interests = [
   {
-    title: 'Photography',
-    description: 'Exploring the world through a lens, capturing moments, and telling stories through visual imagery.',
+    title: 'Community Building',
+    description: 'Creating and nurturing vibrant communities that foster collaboration, learning, and growth.',
   },
   {
-    title: 'Travel',
-    description: 'Experiencing different cultures, architectural styles, and design approaches from around the world.',
+    title: 'Technology & Innovation',
+    description: 'Exploring emerging technologies and how they can be applied to solve real-world problems.',
   },
   {
-    title: 'Reading',
-    description: 'Constantly learning through books on design, psychology, technology, and fiction to gain new perspectives.',
+    title: 'Research & Development',
+    description: 'Contributing to research efforts in IoT, cybersecurity, and artificial intelligence applications.',
   },
 ];
 
