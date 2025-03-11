@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare, Star } from 'lucide-react';
+import { ArrowRight, Briefcase, GraduationCap, Award, Users, User, MessageSquare, Star, Book, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/ThemeProvider';
 import { Card, CardContent } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-// Define MixBlendMode type to fix TypeScript error
 type MixBlendMode = 
   | 'normal' 
   | 'multiply' 
@@ -30,6 +30,7 @@ const AboutPage = () => {
   const { theme } = useTheme();
   const [showTeam, setShowTeam] = useState(false);
   const [showChatBot, setShowChatBot] = useState(false);
+  const [activeTab, setActiveTab] = useState('ai');
 
   return (
     <Layout>
@@ -481,6 +482,402 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Certifications Section */}
+      <section className="py-20 md:py-32">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center text-3xl font-serif font-bold text-gradient mb-6 hover-glow"
+            >
+              <BookOpen size={24} className="mr-2" /> Certifications
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-muted-foreground"
+            >
+              Professional development and continuous learning across various domains
+            </motion.p>
+          </div>
+
+          <Tabs 
+            defaultValue="ai" 
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
+            <TabsList className="w-full md:w-auto flex justify-center mb-8 overflow-x-auto pb-2">
+              <TabsTrigger value="ai">AI & Applications</TabsTrigger>
+              <TabsTrigger value="pm">Project Management</TabsTrigger>
+              <TabsTrigger value="marketing">Marketing</TabsTrigger>
+              <TabsTrigger value="bi">Business Intelligence</TabsTrigger>
+              <TabsTrigger value="tech">Technology</TabsTrigger>
+              <TabsTrigger value="finance">Finance</TabsTrigger>
+              <TabsTrigger value="leadership">Leadership</TabsTrigger>
+              <TabsTrigger value="programming">Programming</TabsTrigger>
+              <TabsTrigger value="social">Social Impact</TabsTrigger>
+            </TabsList>
+
+            {/* AI & Applications Tab */}
+            <TabsContent value="ai">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'ai' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {aiCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Project Management Tab */}
+            <TabsContent value="pm">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'pm' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {pmCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Briefcase className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Marketing Tab */}
+            <TabsContent value="marketing">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'marketing' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {marketingCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Business Intelligence Tab */}
+            <TabsContent value="bi">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'bi' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {biCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Technology Tab */}
+            <TabsContent value="tech">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'tech' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {techCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Finance Tab */}
+            <TabsContent value="finance">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'finance' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {financeCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Leadership Tab */}
+            <TabsContent value="leadership">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'leadership' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {leadershipCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Programming Tab */}
+            <TabsContent value="programming">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'programming' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {programmingCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+
+            {/* Social Impact Tab */}
+            <TabsContent value="social">
+              <motion.div
+                initial="hidden"
+                animate={activeTab === 'social' ? 'visible' : 'hidden'}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {socialCertifications.map((cert, index) => (
+                  <motion.div 
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                    }}
+                  >
+                    <Card className="h-full hover-trigger">
+                      <CardContent className="p-6">
+                        <div className="text-sm text-muted-foreground mb-2">
+                          {cert.issuer} • {cert.date}
+                        </div>
+                        <h3 className="text-lg font-medium mb-4">{cert.name}</h3>
+                        <div className="flex items-center justify-start mt-auto pt-2">
+                          <Award className="h-5 w-5 text-primary mr-2" />
+                          <span className="text-sm">Certification</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
     </Layout>
   );
 };
@@ -581,4 +978,227 @@ const clientReviews = [
   }
 ];
 
+const aiCertifications = [
+  {
+    name: "Artificial Intelligence on Microsoft Azure",
+    issuer: "Microsoft",
+    date: "Mar 2025"
+  },
+  {
+    name: "Generative AI: Introduction and Applications",
+    issuer: "IBM",
+    date: "Mar 2025"
+  },
+  {
+    name: "Generative AI: Prompt Engineering Basics",
+    issuer: "IBM",
+    date: "Mar 2025"
+  },
+  {
+    name: "Google AI Essentials",
+    issuer: "Google",
+    date: "Aug 2024"
+  },
+  {
+    name: "Advanced Prompt Engineering Techniques",
+    issuer: "LinkedIn",
+    date: "Mar 2024"
+  },
+  {
+    name: "Prompt Engineering: How to Talk to the AIs",
+    issuer: "LinkedIn",
+    date: "Mar 2024"
+  }
+];
+
+const pmCertifications = [
+  {
+    name: "Project Management Fundamentals",
+    issuer: "Microsoft",
+    date: "Jan 2025"
+  },
+  {
+    name: "Career Essentials in Project Management",
+    issuer: "Microsoft & LinkedIn",
+    date: "Nov 2024"
+  },
+  {
+    name: "Project Management Foundations: Budgets, Risk, Schedules, and Communication",
+    issuer: "LinkedIn",
+    date: "Nov - Oct 2024"
+  },
+  {
+    name: "Managing Projects with Microsoft 365",
+    issuer: "LinkedIn",
+    date: "Sep 2024"
+  },
+  {
+    name: "Project Execution: Running the Project",
+    issuer: "Google",
+    date: "Sep 2024"
+  },
+  {
+    name: "Project Planning: Putting It All Together",
+    issuer: "Google",
+    date: "Sep 2024"
+  },
+  {
+    name: "Managing Project Stakeholders",
+    issuer: "LinkedIn",
+    date: "Aug 2024"
+  },
+  {
+    name: "Project Initiation: Starting a Successful Project",
+    issuer: "Google",
+    date: "Aug 2024"
+  },
+  {
+    name: "Project Management Foundations: Teams & Requirements",
+    issuer: "LinkedIn",
+    date: "Aug - Jul 2024"
+  },
+  {
+    name: "Foundations of Project Management",
+    issuer: "Google",
+    date: "Jul 2024"
+  },
+  {
+    name: "Project Management Foundations",
+    issuer: "PMI, NASBA, LinkedIn",
+    date: "Apr 2024"
+  }
+];
+
+const marketingCertifications = [
+  {
+    name: "LinkedIn Content and Creative Design",
+    issuer: "LinkedIn",
+    date: "Nov 2024"
+  },
+  {
+    name: "LinkedIn Marketing Solutions Fundamentals",
+    issuer: "LinkedIn",
+    date: "Nov 2024"
+  },
+  {
+    name: "LinkedIn Marketing Strategy",
+    issuer: "LinkedIn",
+    date: "Nov 2024"
+  },
+  {
+    name: "The Three Pillars of Effective Communication",
+    issuer: "LinkedIn",
+    date: "Oct 2024"
+  }
+];
+
+const biCertifications = [
+  {
+    name: "Foundations of Business Intelligence",
+    issuer: "Google",
+    date: "Sep 2024"
+  },
+  {
+    name: "Business Model Canvas: A Tool for Entrepreneurs and Innovators",
+    issuer: "Kennesaw State University",
+    date: "Jan 2025"
+  },
+  {
+    name: "Business Analysis & Process Management",
+    issuer: "Coursera",
+    date: "Apr 2024"
+  }
+];
+
+const techCertifications = [
+  {
+    name: "GitHub Foundations",
+    issuer: "GitHub",
+    date: "Sep 2024"
+  },
+  {
+    name: "Collaborating with Microsoft 365",
+    issuer: "LinkedIn",
+    date: "Aug 2024"
+  },
+  {
+    name: "Optimizing Your Work with Microsoft 365",
+    issuer: "LinkedIn",
+    date: "Aug 2024"
+  },
+  {
+    name: "Ubuntu Linux: Operating System Basics",
+    issuer: "LinkedIn",
+    date: "Apr 2024"
+  }
+];
+
+const financeCertifications = [
+  {
+    name: "Investment Risk Management",
+    issuer: "Coursera",
+    date: "Apr 2024"
+  }
+];
+
+const leadershipCertifications = [
+  {
+    name: "Asana Ambassador",
+    issuer: "Asana",
+    date: "May 2024"
+  },
+  {
+    name: "Microsoft Learn Student Ambassador",
+    issuer: "Microsoft",
+    date: "Feb 2024"
+  },
+  {
+    name: "The Six Skills of Proactive Professionals",
+    issuer: "LinkedIn",
+    date: "Apr 2024"
+  },
+  {
+    name: "Nano Tips for Developing Magnetic Charisma",
+    issuer: "LinkedIn",
+    date: "Feb 2024"
+  },
+  {
+    name: "Career Wellness Nano Tips",
+    issuer: "LinkedIn",
+    date: "Feb 2024"
+  }
+];
+
+const programmingCertifications = [
+  {
+    name: "Programming for Everybody (Python)",
+    issuer: "Coursera",
+    date: "Sep 2023"
+  },
+  {
+    name: "Certified Python Elementary Programmer",
+    issuer: "Python Career Trainers",
+    date: "Apr 2023"
+  },
+  {
+    name: "HTML Basics",
+    issuer: "Skillhub",
+    date: "Feb 2023"
+  },
+  {
+    name: "Build a Free Website with WordPress",
+    issuer: "Coursera",
+    date: "Apr 2024"
+  }
+];
+
+const socialCertifications = [
+  {
+    name: "Exploring Gender Equality in Education",
+    issuer: "British Council",
+    date: "Aug 2024"
+  }
+];
+
 export default AboutPage;
+
