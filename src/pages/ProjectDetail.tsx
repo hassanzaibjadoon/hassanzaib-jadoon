@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -42,91 +41,343 @@ const staggerContainer = {
   }
 };
 
-// Mock data for the project detail
+// Updated Mock data for project details
 const projectsData = [
   {
     id: "1",
-    title: "E-Commerce Platform Redesign",
-    client: "Fashion Retailer",
+    title: "Project Fankarana Safar",
+    client: "National Development Initiative",
     date: "2023",
-    category: "UX/UI Design",
-    tags: ["E-commerce", "Mobile App", "Web Design"],
-    description: "Complete redesign of an e-commerce platform focusing on improving user experience, increasing conversion rates, and modernizing the visual identity.",
-    challenge: "The client's existing platform suffered from poor navigation, inconsistent user experience across devices, and low conversion rates. The challenge was to redesign the entire platform while maintaining brand recognition and improving key metrics.",
-    solution: "I developed a comprehensive design strategy focusing on user-centered design principles. Starting with extensive user research and competitive analysis, I created a streamlined information architecture and user flow. The new design features an intuitive navigation system, optimized product pages, and a simplified checkout process.",
+    category: "Project Management",
+    tags: ["Strategic Planning", "Resource Allocation", "Team Management", "Stakeholder Communication"],
+    description: "A comprehensive project management initiative designed to streamline processes, improve resource allocation, and enhance overall efficiency for a national development program.",
+    challenge: "The client was struggling with inefficient resource allocation, poor team coordination, and missed deadlines, resulting in significant project delays and budget overruns.",
+    solution: "I implemented a structured project management approach, including detailed work breakdown structures, milestone-based planning, and regular progress tracking. A dedicated communication channel was established for all stakeholders to ensure transparency and timely decision-making.",
     results: [
-      "42% increase in conversion rate within 3 months after launch",
-      "65% reduction in cart abandonment rate",
-      "28% increase in average session duration",
-      "User satisfaction score improved from 3.2/5 to 4.7/5"
+      "30% reduction in project completion time",
+      "25% decrease in resource wastage",
+      "95% of milestones completed on schedule",
+      "Stakeholder satisfaction increased from 65% to 92%"
     ],
     process: [
       {
-        phase: "Research & Discovery",
-        description: "Conducted user interviews, surveys, and competitive analysis to understand pain points and opportunities.",
-        deliverables: ["User Personas", "Journey Maps", "Competitive Analysis Report"]
+        phase: "Assessment & Analysis",
+        description: "Conducted a thorough analysis of existing processes, identified bottlenecks, and gathered stakeholder requirements.",
+        deliverables: ["Gap Analysis Report", "Stakeholder Requirements Document", "Risk Assessment"]
       },
       {
-        phase: "UX Design",
-        description: "Developed information architecture, user flows, and wireframes to establish the foundation of the new design.",
-        deliverables: ["Information Architecture", "User Flows", "Low-fidelity Wireframes"]
+        phase: "Planning & Strategy",
+        description: "Developed a comprehensive project plan with clear milestones, resource allocations, and communication protocols.",
+        deliverables: ["Detailed Project Plan", "Resource Allocation Matrix", "Communication Strategy"]
       },
       {
-        phase: "UI Design",
-        description: "Created visual design system, high-fidelity mockups, and interactive prototypes.",
-        deliverables: ["Design System", "High-fidelity Mockups", "Interactive Prototypes"]
+        phase: "Implementation",
+        description: "Executed the planned strategies, monitored progress, and made real-time adjustments to ensure optimal performance.",
+        deliverables: ["Implementation Guidelines", "Progress Tracking System", "Quality Control Measures"]
       },
       {
-        phase: "Testing & Iteration",
-        description: "Conducted usability testing and iterated on the design based on feedback.",
-        deliverables: ["Usability Test Results", "Iteration Documentation", "Final Design Specifications"]
+        phase: "Monitoring & Control",
+        description: "Established regular review cycles, performance metrics, and feedback mechanisms to maintain project quality.",
+        deliverables: ["Performance Dashboards", "Weekly Status Reports", "Issue Resolution Framework"]
       }
     ],
     imageSrc: "/placeholder.svg",
-    imageAlt: "E-Commerce Platform Redesign Preview",
-    link: "https://example.com/project1"
+    imageAlt: "Project Fankarana Safar Management Dashboard",
+    link: "https://example.com/project-fankarana"
   },
   {
     id: "2",
-    title: "Financial Services Mobile Application",
-    client: "Banking Corporation",
+    title: "Process Management Tool (PMT)",
+    client: "Corporate Enterprise Solutions",
     date: "2022",
-    category: "Mobile App Design",
-    tags: ["Finance", "Mobile App", "User Experience"],
-    description: "Design of a mobile banking application focused on simplifying financial management for users while ensuring security and compliance with financial regulations.",
-    challenge: "The client wanted to modernize their digital offerings with a mobile app that would appeal to younger demographics while not alienating their traditional customer base. They needed a secure, intuitive interface that would handle complex financial transactions while remaining accessible.",
-    solution: "I designed a clean, accessible interface that guides users through financial tasks with clear visual hierarchies and progressive disclosure of complex features. Security features were integrated seamlessly into the user experience without creating friction.",
+    category: "Project Management",
+    tags: ["Process Optimization", "Workflow Automation", "Efficiency Enhancement", "Custom Tool Development"],
+    description: "Development and implementation of a custom process management tool for organizational workflows, designed to streamline operations and improve productivity.",
+    challenge: "The client was using multiple disconnected systems to manage their organizational processes, leading to data inconsistencies, redundant work, and inefficient resource utilization.",
+    solution: "I developed a centralized process management tool that integrated various workflows, automated routine tasks, and provided real-time analytics for management decision-making.",
     results: [
-      "Over 100,000 downloads in the first month of launch",
-      "Average rating of 4.8/5 stars on app stores",
-      "User engagement 35% higher than industry average",
-      "38% of users reported using the app daily"
+      "40% reduction in process completion time",
+      "60% decrease in data entry errors",
+      "85% increase in cross-department collaboration efficiency",
+      "Annual cost savings of approximately $180,000"
     ],
     process: [
       {
-        phase: "Research & Strategy",
-        description: "Conducted market research, user interviews, and analyzed competitor apps to identify opportunities and constraints.",
-        deliverables: ["Market Research Report", "User Needs Assessment", "Strategic Recommendations"]
+        phase: "Requirements Gathering",
+        description: "Conducted interviews with department heads and process owners to understand pain points and requirements.",
+        deliverables: ["Requirements Specification", "Process Flow Diagrams", "User Stories"]
       },
       {
-        phase: "UX Design",
-        description: "Created information architecture, user flows, and wireframes for key banking features.",
-        deliverables: ["User Flows", "Wireframes", "Navigation Structure"]
+        phase: "System Design",
+        description: "Created detailed system architecture, database schema, and user interface designs.",
+        deliverables: ["System Architecture Document", "Database Design", "UI/UX Mockups"]
       },
       {
-        phase: "UI Design",
-        description: "Developed visual design system, high-fidelity screens, and interactive prototypes.",
-        deliverables: ["UI Style Guide", "Screen Designs", "Interactive Prototype"]
+        phase: "Development & Testing",
+        description: "Built the solution using agile methodology with regular sprint reviews and comprehensive testing.",
+        deliverables: ["Functional Prototype", "Test Cases", "User Acceptance Test Plan"]
       },
       {
-        phase: "Testing & Refinement",
-        description: "Conducted usability testing with diverse user groups and refined the design based on feedback.",
-        deliverables: ["Usability Test Results", "Design Iterations", "Final Design Assets"]
+        phase: "Deployment & Training",
+        description: "Implemented the solution across departments with comprehensive training sessions and documentation.",
+        deliverables: ["Deployment Plan", "Training Materials", "User Manuals"]
       }
     ],
     imageSrc: "/placeholder.svg",
-    imageAlt: "Financial Services Mobile Application Preview",
-    link: "https://example.com/project2"
+    imageAlt: "Process Management Tool Interface",
+    link: "https://example.com/pmt-solution"
+  },
+  {
+    id: "3",
+    title: "HR Digital Transformation",
+    client: "Multinational Corporation",
+    date: "2022",
+    category: "Human Resources",
+    tags: ["HR Automation", "Employee Experience", "Digital Transformation", "Process Optimization"],
+    description: "Complete digital transformation of HR processes, including recruitment, onboarding, performance management, and employee engagement initiatives.",
+    challenge: "The client's HR department was operating with paper-based systems and disconnected digital tools, resulting in slow processes, data inconsistencies, and poor employee experience.",
+    solution: "I designed and implemented an integrated HR digital ecosystem that connected all HR functions, automated routine tasks, and created a seamless experience for both HR staff and employees.",
+    results: [
+      "70% reduction in recruitment cycle time",
+      "90% decrease in onboarding paperwork",
+      "45% improvement in employee satisfaction with HR services",
+      "Annual labor cost savings of approximately $250,000"
+    ],
+    process: [
+      {
+        phase: "Assessment & Strategy",
+        description: "Evaluated existing HR processes, systems, and pain points to develop a comprehensive transformation strategy.",
+        deliverables: ["HR Process Audit", "Digital Maturity Assessment", "Transformation Roadmap"]
+      },
+      {
+        phase: "Solution Design",
+        description: "Designed integrated digital solutions for each HR function with emphasis on user experience and system interoperability.",
+        deliverables: ["Solution Architecture", "Process Redesign", "Integration Framework"]
+      },
+      {
+        phase: "Implementation",
+        description: "Executed the transformation in phases, starting with core HR functions and progressively expanding to all areas.",
+        deliverables: ["Implementation Plan", "Change Management Strategy", "System Configuration"]
+      },
+      {
+        phase: "Adoption & Optimization",
+        description: "Ensured successful adoption through training, support, and continuous improvement initiatives.",
+        deliverables: ["Training Program", "Adoption Metrics", "Optimization Recommendations"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "HR Digital Transformation Dashboard",
+    link: "https://example.com/hr-transformation"
+  },
+  {
+    id: "4",
+    title: "Employee Training & Development Program",
+    client: "Technology Services Company",
+    date: "2023",
+    category: "Human Resources",
+    tags: ["Learning & Development", "Skill Enhancement", "Career Growth", "Employee Retention"],
+    description: "Comprehensive training program designed to enhance employee skills, support career growth, and improve organizational capabilities.",
+    challenge: "The client was facing high employee turnover, skill gaps, and difficulties in keeping pace with industry advancements due to inadequate training and development opportunities.",
+    solution: "I developed a structured training and development program with personalized learning paths, mentorship opportunities, and clear connections to career advancement within the organization.",
+    results: [
+      "35% reduction in employee turnover",
+      "80% of employees reported improved job satisfaction",
+      "65% increase in internal promotions",
+      "42% improvement in critical skill competency assessments"
+    ],
+    process: [
+      {
+        phase: "Needs Assessment",
+        description: "Identified organizational skill gaps, individual development needs, and future capability requirements.",
+        deliverables: ["Skills Gap Analysis", "Learning Needs Assessment", "Competency Framework"]
+      },
+      {
+        phase: "Program Design",
+        description: "Designed a comprehensive training framework with diverse learning methods and personalized development paths.",
+        deliverables: ["Curriculum Design", "Learning Pathways", "Delivery Methods"]
+      },
+      {
+        phase: "Content Development",
+        description: "Created high-quality training content, leveraging both internal expertise and external resources.",
+        deliverables: ["Training Materials", "E-Learning Modules", "Assessment Tools"]
+      },
+      {
+        phase: "Implementation & Evaluation",
+        description: "Launched the program with a phased approach and established metrics to measure effectiveness and impact.",
+        deliverables: ["Implementation Schedule", "Engagement Metrics", "Impact Assessment Framework"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "Employee Training Program Interface",
+    link: "https://example.com/training-program"
+  },
+  {
+    id: "5",
+    title: "TOOP Ambassadors Program",
+    client: "International Organization",
+    date: "2022",
+    category: "Program Management",
+    tags: ["Ambassador Program", "Community Engagement", "Strategic Management", "Global Initiative"],
+    description: "Strategic program management for ambassador recruitment, training, and engagement initiatives across multiple regions to promote organizational objectives.",
+    challenge: "The client needed to establish a global presence through brand ambassadors but lacked the structure, processes, and management framework to recruit, train, and coordinate ambassadors effectively.",
+    solution: "I designed and implemented a comprehensive ambassador program with standardized recruitment criteria, structured training, engagement tools, and performance metrics to ensure consistency across all regions.",
+    results: [
+      "Successful onboarding of 150+ ambassadors across 25 countries",
+      "85% ambassador retention rate year-over-year",
+      "40% increase in program reach and brand awareness",
+      "60% of organizational growth initiatives supported by ambassador activities"
+    ],
+    process: [
+      {
+        phase: "Program Strategy",
+        description: "Developed the overall program framework, objectives, and success metrics aligned with organizational goals.",
+        deliverables: ["Program Charter", "Strategic Framework", "Success Criteria"]
+      },
+      {
+        phase: "Recruitment & Selection",
+        description: "Created and implemented a structured process to identify, evaluate, and select suitable ambassadors.",
+        deliverables: ["Recruitment Strategy", "Selection Criteria", "Application Process"]
+      },
+      {
+        phase: "Training & Enablement",
+        description: "Designed comprehensive training and provided ambassadors with necessary tools and resources.",
+        deliverables: ["Training Curriculum", "Resource Toolkit", "Knowledge Base"]
+      },
+      {
+        phase: "Engagement & Management",
+        description: "Established ongoing engagement mechanisms and performance management systems for the ambassador network.",
+        deliverables: ["Engagement Calendar", "Performance Dashboards", "Recognition Framework"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "TOOP Ambassadors Program Dashboard",
+    link: "https://example.com/toop-ambassadors"
+  },
+  {
+    id: "6",
+    title: "Brand Awareness Campaign",
+    client: "Multiple Organizations",
+    date: "2023",
+    category: "Public Relations",
+    tags: ["Brand Strategy", "Media Relations", "Public Engagement", "Campaign Management"],
+    description: "Multi-channel brand awareness campaign for various organizations and programs, focusing on increasing visibility and positive public perception.",
+    challenge: "The clients were struggling with limited brand recognition, inconsistent messaging, and difficulty differentiating themselves in competitive markets.",
+    solution: "I developed integrated brand awareness campaigns with consistent messaging, strategic media placements, and targeted community engagement activities tailored to each organization's unique value proposition.",
+    results: [
+      "55% increase in brand recognition metrics",
+      "120% growth in social media engagement",
+      "35 earned media placements in targeted publications",
+      "45% increase in website traffic from campaign sources"
+    ],
+    process: [
+      {
+        phase: "Brand Analysis",
+        description: "Conducted comprehensive analysis of existing brand perception, competitor positioning, and market opportunities.",
+        deliverables: ["Brand Audit Report", "Competitive Analysis", "Perception Study"]
+      },
+      {
+        phase: "Campaign Strategy",
+        description: "Developed targeted campaign strategies with clear objectives, messaging frameworks, and channel approaches.",
+        deliverables: ["Campaign Strategy Document", "Messaging Platform", "Channel Strategy"]
+      },
+      {
+        phase: "Content Creation",
+        description: "Created compelling content across various formats to support campaign objectives and resonate with target audiences.",
+        deliverables: ["Content Calendar", "Media Materials", "Visual Assets"]
+      },
+      {
+        phase: "Implementation & Measurement",
+        description: "Executed campaign elements across channels and implemented comprehensive measurement framework.",
+        deliverables: ["Implementation Timeline", "Progress Reports", "Campaign Analytics"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "Brand Awareness Campaign Materials",
+    link: "https://example.com/brand-campaigns"
+  },
+  {
+    id: "13",
+    title: "FinTech Mobile App Design",
+    client: "Financial Technology Startup",
+    date: "2022",
+    category: "UI/UX Design",
+    tags: ["Mobile Design", "Financial Services", "User Experience", "Interface Design"],
+    description: "User interface and experience design for a financial technology mobile application focused on personal finance management and investment tools.",
+    challenge: "The client needed a mobile app that would make complex financial operations accessible and intuitive for users with varying levels of financial literacy, while ensuring security and compliance with regulations.",
+    solution: "I designed a clean, intuitive interface with progressive disclosure of complex features, clear data visualization, and thoughtful user flows that guide users through financial tasks and decisions.",
+    results: [
+      "95% task completion rate in usability testing",
+      "User satisfaction rating of 4.8/5 in beta testing",
+      "67% reduction in support requests compared to previous version",
+      "87% of users reported increased confidence in financial decisions"
+    ],
+    process: [
+      {
+        phase: "User Research",
+        description: "Conducted interviews, surveys, and competitive analysis to understand user needs, pain points, and expectations.",
+        deliverables: ["User Personas", "Journey Maps", "Competitive Analysis"]
+      },
+      {
+        phase: "Information Architecture",
+        description: "Developed the app structure, navigation patterns, and content organization to ensure intuitive access to features.",
+        deliverables: ["App Sitemap", "User Flows", "Feature Prioritization"]
+      },
+      {
+        phase: "UI Design",
+        description: "Created a comprehensive design system and high-fidelity mockups for all app screens and states.",
+        deliverables: ["Design System", "UI Components", "Screen Designs"]
+      },
+      {
+        phase: "Prototyping & Testing",
+        description: "Built interactive prototypes and conducted multiple rounds of usability testing to refine the experience.",
+        deliverables: ["Interactive Prototype", "Usability Test Results", "Design Iterations"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "FinTech Mobile App Design Screens",
+    link: "https://example.com/fintech-app"
+  },
+  {
+    id: "24",
+    title: "Coding Bootcamp",
+    client: "Educational Institution",
+    date: "2023",
+    category: "Training",
+    tags: ["Coding Education", "Curriculum Development", "Technical Training", "Career Preparation"],
+    description: "Intensive coding bootcamp program designed for beginners entering tech, focusing on practical skills and job placement preparation.",
+    challenge: "The client wanted to create an effective coding bootcamp that would prepare students with no prior programming experience for entry-level developer positions in just 12 weeks.",
+    solution: "I developed a comprehensive, project-based curriculum with a balanced focus on technical skills, practical application, and career preparation, delivered through a blend of instruction methods and real-world projects.",
+    results: [
+      "92% program completion rate",
+      "85% job placement rate within 3 months of graduation",
+      "Average 45% increase in participant income after program completion",
+      "95% of graduates reported feeling prepared for entry-level positions"
+    ],
+    process: [
+      {
+        phase: "Curriculum Development",
+        description: "Designed a progressive curriculum that builds foundational knowledge and advances to complex concepts through practical application.",
+        deliverables: ["Curriculum Outline", "Learning Objectives", "Project Specifications"]
+      },
+      {
+        phase: "Content Creation",
+        description: "Developed comprehensive learning materials including lectures, coding exercises, projects, and assessment tools.",
+        deliverables: ["Lecture Materials", "Coding Exercises", "Project Briefs"]
+      },
+      {
+        phase: "Delivery Planning",
+        description: "Structured the program delivery to maximize engagement and knowledge retention through varied teaching methods.",
+        deliverables: ["Program Schedule", "Teaching Methodology", "Support Framework"]
+      },
+      {
+        phase: "Career Preparation",
+        description: "Integrated career-focused elements including portfolio development, interview preparation, and industry networking.",
+        deliverables: ["Portfolio Guidelines", "Interview Prep Materials", "Industry Connection Events"]
+      }
+    ],
+    imageSrc: "/placeholder.svg",
+    imageAlt: "Coding Bootcamp Class in Session",
+    link: "https://example.com/coding-bootcamp"
   }
 ];
 
