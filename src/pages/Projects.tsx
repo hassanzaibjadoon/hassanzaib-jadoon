@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -122,44 +121,152 @@ const ProjectsPage = () => {
   );
 };
 
-// Mock Data
+// Updated Mock Data
 const projects = [
   {
     id: '1',
-    title: 'E-Commerce Redesign',
-    category: 'web design',
-    description: 'A complete redesign of an e-commerce platform focused on user experience and conversion optimization.',
+    title: 'Project Fankarana Safar',
+    category: 'project management',
+    description: 'A comprehensive project management initiative focused on streamlining processes and improving efficiency.',
   },
   {
     id: '2',
-    title: 'Mobile Banking App',
-    category: 'ui/ux design',
-    description: 'Modern, intuitive mobile banking application designed with security and user experience in mind.',
+    title: 'Process Management Tool (PMT)',
+    category: 'project management',
+    description: 'Development and implementation of a custom process management tool for organizational workflows.',
   },
   {
     id: '3',
-    title: 'Brand Identity System',
-    category: 'branding',
-    description: 'Comprehensive brand identity system including logo, color palette, typography, and guidelines.',
+    title: 'HR Digital Transformation',
+    category: 'human resources',
+    description: 'Complete digital transformation of HR processes, including recruitment, onboarding, and performance management.',
   },
   {
     id: '4',
-    title: 'Corporate Website',
-    category: 'web design',
-    description: 'Professional website for a corporate client, focusing on clear communication and brand representation.',
+    title: 'Employee Training & Development Program',
+    category: 'human resources',
+    description: 'Comprehensive training program designed to enhance employee skills and career growth.',
   },
   {
     id: '5',
-    title: 'Product Packaging',
-    category: 'branding',
-    description: 'Distinctive packaging design for a consumer product, enhancing shelf presence and brand recognition.',
+    title: 'TOOP Ambassadors Program',
+    category: 'program management',
+    description: 'Strategic program management for ambassador recruitment, training, and engagement initiatives.',
   },
   {
     id: '6',
-    title: 'Healthcare Platform',
-    category: 'ui/ux design',
-    description: 'User-centered design for a healthcare platform, improving patient experience and information accessibility.',
+    title: 'Brand Awareness Campaign',
+    category: 'public relations',
+    description: 'Multi-channel brand awareness campaign for various organizations and programs.',
   },
+  {
+    id: '7',
+    title: 'Young Leaders Training Initiative',
+    category: 'leadership development',
+    description: 'Comprehensive leadership training program designed for emerging young professionals.',
+  },
+  {
+    id: '8',
+    title: 'Healthcare Website Content Strategy',
+    category: 'copywriting',
+    description: 'Development of content strategy and creation for a healthcare provider\'s website.',
+  },
+  {
+    id: '9',
+    title: 'Food Brand Identity Design',
+    category: 'graphic design',
+    description: 'Complete brand identity design including logo, packaging, and marketing materials.',
+  },
+  {
+    id: '10',
+    title: 'Online Learning Platform Research',
+    category: 'research',
+    description: 'In-depth user research and analysis for an educational technology platform.',
+  },
+  {
+    id: '11',
+    title: 'Resume & LinkedIn Optimization',
+    category: 'career services',
+    description: 'Professional resume revamp and LinkedIn profile optimization for executives.',
+  },
+  {
+    id: '12',
+    title: 'Corporate Events Management',
+    category: 'event management',
+    description: 'Successfully managed and executed over 15+ onsite corporate events and conferences.',
+  },
+  {
+    id: '13',
+    title: 'FinTech Mobile App Design',
+    category: 'ui/ux design',
+    description: 'User interface and experience design for a financial technology mobile application.',
+  },
+  {
+    id: '14',
+    title: 'E-Commerce UX Optimization',
+    category: 'ui/ux design',
+    description: 'Complete user experience optimization for an e-commerce platform.',
+  },
+  {
+    id: '15',
+    title: 'Portfolio Website Development',
+    category: 'web development',
+    description: 'Custom portfolio website development for creative professionals.',
+  },
+  {
+    id: '16',
+    title: 'Law Firm Website Redesign',
+    category: 'web development',
+    description: 'Corporate website redesign and development for a law firm.',
+  },
+  {
+    id: '17',
+    title: 'Startup Brand Identity',
+    category: 'branding',
+    description: 'Complete brand identity system development for a new startup.',
+  },
+  {
+    id: '18',
+    title: 'SaaS Blog SEO Optimization',
+    category: 'seo',
+    description: 'Search engine optimization strategy and implementation for a SaaS company blog.',
+  },
+  {
+    id: '19',
+    title: 'E-commerce Email Marketing',
+    category: 'marketing',
+    description: 'Email marketing automation strategy and implementation for an e-commerce business.',
+  },
+  {
+    id: '20',
+    title: 'Career Mentorship Program',
+    category: 'education',
+    description: 'Structured mentorship program designed for students and early career professionals.',
+  },
+  {
+    id: '21',
+    title: 'Tech Forum Community Building',
+    category: 'community',
+    description: 'Online community growth and engagement strategies for a technical forum.',
+  },
+  {
+    id: '22',
+    title: 'Strategic Business Planning',
+    category: 'consulting',
+    description: 'Business strategy development and implementation plan for startup expansion.',
+  },
+  {
+    id: '23',
+    title: 'Data Analytics Workshop',
+    category: 'training',
+    description: 'Technical training workshop on data analytics for business professionals.',
+  },
+  {
+    id: '24',
+    title: 'Coding Bootcamp',
+    category: 'training',
+    description: 'Intensive coding bootcamp program designed for beginners entering tech.',
+  }
 ];
 
 export default ProjectsPage;
