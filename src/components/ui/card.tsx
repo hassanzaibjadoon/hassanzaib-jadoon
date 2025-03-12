@@ -1,3 +1,4 @@
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -76,4 +77,24 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+const CardProject = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("mt-2 p-3 bg-muted/40 rounded-md", className)}
+    {...props}
+  />
+))
+CardProject.displayName = "CardProject"
+
+export { 
+  Card, 
+  CardHeader, 
+  CardFooter, 
+  CardTitle, 
+  CardDescription, 
+  CardContent,
+  CardProject
+}

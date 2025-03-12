@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -78,6 +79,10 @@ const servicesData = [
       "Stakeholder communication",
       "Performance metrics & reporting"
     ],
+    projects: [
+      "Project Fankarana Safar",
+      "Process Management Tool (PMT)"
+    ],
     category: "management"
   },
   {
@@ -96,6 +101,9 @@ const servicesData = [
       "Cross-functional leadership",
       "Benefits realization tracking",
       "Program performance metrics"
+    ],
+    projects: [
+      "TOOP Ambassadors Program"
     ],
     category: "management"
   },
@@ -116,6 +124,10 @@ const servicesData = [
       "Conflict resolution",
       "HR policy development"
     ],
+    projects: [
+      "HR Digital Transformation",
+      "Employee Training & Development Program"
+    ],
     category: "management"
   },
   {
@@ -134,6 +146,9 @@ const servicesData = [
       "Leadership assessment tools",
       "Mentorship programs",
       "Leadership retreat facilitation"
+    ],
+    projects: [
+      "Young Leaders Training Initiative"
     ],
     category: "management"
   },
@@ -156,6 +171,10 @@ const servicesData = [
       "Accessibility compliance",
       "Data-driven design decisions"
     ],
+    projects: [
+      "FinTech Mobile App UI Design",
+      "E-Commerce Website UX Optimization"
+    ],
     category: "design"
   },
   {
@@ -175,6 +194,9 @@ const servicesData = [
       "Multi-format design",
       "Visual storytelling"
     ],
+    projects: [
+      "Brand Identity Design for a Food Brand"
+    ],
     category: "design"
   },
   {
@@ -193,6 +215,10 @@ const servicesData = [
       "Consistent visual language",
       "Cross-channel application",
       "Brand story development"
+    ],
+    projects: [
+      "Brand Identity for a New Startup",
+      "Rebranding for an Established Business"
     ],
     category: "design"
   },
@@ -215,6 +241,10 @@ const servicesData = [
       "Fast loading speeds",
       "Secure implementation"
     ],
+    projects: [
+      "Portfolio Website for Freelancers",
+      "Corporate Website Redesign for Law Firm"
+    ],
     category: "development"
   },
   {
@@ -233,6 +263,10 @@ const servicesData = [
       "Practical application exercises",
       "Progress measurement tools",
       "Certification preparation"
+    ],
+    projects: [
+      "Data Analytics Workshop for Professionals",
+      "Coding Bootcamp for Beginners"
     ],
     category: "development"
   },
@@ -255,6 +289,9 @@ const servicesData = [
       "Persuasive storytelling",
       "Call-to-action development"
     ],
+    projects: [
+      "Content Strategy for Healthcare Website"
+    ],
     category: "marketing"
   },
   {
@@ -273,6 +310,10 @@ const servicesData = [
       "Conversion-focused content",
       "Competitive analysis",
       "Content calendar planning"
+    ],
+    projects: [
+      "SEO Optimization for SaaS Blog",
+      "Content Strategy for Healthcare Website"
     ],
     category: "marketing"
   },
@@ -293,6 +334,9 @@ const servicesData = [
       "ROI measurement",
       "A/B testing & optimization"
     ],
+    projects: [
+      "Social Media Marketing for Fitness Brand"
+    ],
     category: "marketing"
   },
   {
@@ -312,6 +356,9 @@ const servicesData = [
       "Automation workflows",
       "Conversion tracking"
     ],
+    projects: [
+      "Email Marketing Automation for E-commerce"
+    ],
     category: "marketing"
   },
   {
@@ -330,6 +377,9 @@ const servicesData = [
       "Spokesperson training",
       "Reputation management",
       "Brand story placement"
+    ],
+    projects: [
+      "Brand Awareness Campaign for Various Organizations and Programs"
     ],
     category: "marketing"
   },
@@ -352,6 +402,10 @@ const servicesData = [
       "Skills highlighting",
       "Cover letter writing"
     ],
+    projects: [
+      "Resume Revamp for Mid-Career Professionals",
+      "LinkedIn Profile Optimization for Executives"
+    ],
     category: "career"
   },
   {
@@ -371,6 +425,10 @@ const servicesData = [
       "Priority improvement areas",
       "Follow-up consultation"
     ],
+    projects: [
+      "Resume Revamp for Mid-Career Professionals",
+      "LinkedIn Profile Optimization for Executives"
+    ],
     category: "career"
   },
   {
@@ -389,6 +447,10 @@ const servicesData = [
       "Progress tracking",
       "Real-world application",
       "Networking opportunities"
+    ],
+    projects: [
+      "Career Mentorship Program for Students",
+      "Corporate Upskilling Initiative"
     ],
     category: "career"
   },
@@ -411,6 +473,10 @@ const servicesData = [
       "Content calendar planning",
       "Moderation guidelines"
     ],
+    projects: [
+      "Online Community Growth for Tech Forum",
+      "Non-Profit Volunteer Network Expansion"
+    ],
     category: "community"
   },
   {
@@ -429,6 +495,9 @@ const servicesData = [
       "Timeline development",
       "Attendee experience design",
       "Post-event analysis"
+    ],
+    projects: [
+      "Managed Over 15+ Onsite Events"
     ],
     category: "community"
   },
@@ -451,6 +520,10 @@ const servicesData = [
       "Data visualization",
       "Action recommendation reports"
     ],
+    projects: [
+      "User Research for an Online Learning Platform",
+      "Cybersecurity Research and Visualization"
+    ],
     category: "strategy"
   },
   {
@@ -469,6 +542,10 @@ const servicesData = [
       "Stakeholder alignment",
       "Resource planning",
       "Milestone tracking"
+    ],
+    projects: [
+      "Business Strategy for Startup Expansion",
+      "Digital Transformation Roadmap for Enterprises"
     ],
     category: "strategy"
   }
@@ -678,14 +755,32 @@ export default function ServicesPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow">
-                      <ul className="space-y-2">
-                        {service.keyPoints.map((point, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
-                            <span className="text-sm">{point}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-sm font-medium mb-2">Key Features</h4>
+                          <ul className="space-y-2">
+                            {service.keyPoints.map((point, index) => (
+                              <li key={index} className="flex items-start gap-2">
+                                <CheckCircle className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                                <span className="text-sm">{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        {service.projects && service.projects.length > 0 && (
+                          <div>
+                            <h4 className="text-sm font-medium mb-2">Recent Projects</h4>
+                            <ul className="space-y-1">
+                              {service.projects.map((project, index) => (
+                                <li key={index} className="text-sm text-muted-foreground">
+                                  • {project}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
                     </CardContent>
                     <CardFooter>
                       <Button 
