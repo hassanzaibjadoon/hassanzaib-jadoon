@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -480,37 +479,109 @@ const processSteps = [
   {
     number: "01",
     title: "Discovery",
-    description: "Understanding your business goals, target audience, and requirements through in-depth consultations and research."
+    description: "We start by understanding your goals, challenges, and requirements through detailed consultations and research."
   },
   {
     number: "02",
-    title: "Strategy",
-    description: "Developing a comprehensive plan and approach tailored to your project needs and objectives."
+    title: "Strategy & Planning",
+    description: "Based on insights gathered, we develop a strategic plan tailored to meet your objectives effectively."
   },
   {
     number: "03",
-    title: "Design",
-    description: "Creating intuitive, engaging, and visually appealing designs that align with your brand and user expectations."
+    title: "Design & Conceptualization",
+    description: "For creative and technical projects, we craft visually compelling designs and structured frameworks that align with your brand."
   },
   {
     number: "04",
-    title: "Development",
-    description: "Building robust, responsive, and high-performing implementations of the approved designs."
+    title: "Execution & Implementation",
+    description: "We bring the plan to life with precision, ensuring seamless integration and high performance."
   },
   {
     number: "05",
-    title: "Testing",
-    description: "Rigorous quality assurance to ensure everything functions perfectly across devices and browsers."
+    title: "Quality Assurance & Refinement",
+    description: "Rigorous testing, optimization, and revisions are done to guarantee excellence in every project."
   },
   {
     number: "06",
-    title: "Launch",
-    description: "Smooth deployment of your project with ongoing support to ensure successful adoption."
+    title: "Delivery & Continuous Support",
+    description: "We ensure smooth deployment, provide post-launch support, and continuously improve our solutions to keep up with your evolving needs."
   }
 ];
 
 // FAQ data
 const faqData = [
+  {
+    question: "What industries do you specialize in for Project Management?",
+    answer: "We work with a variety of industries, including technology, education, marketing, and corporate businesses, ensuring tailored solutions that meet unique project needs."
+  },
+  {
+    question: "How can your HR services benefit my business?",
+    answer: "Our HR solutions help in streamlining recruitment, improving employee engagement, and ensuring compliance with best HR practices to create a productive workforce."
+  },
+  {
+    question: "What's the difference between Project Management and Program Management?",
+    answer: "Project management focuses on individual projects, while program management oversees multiple related projects to align with broader business goals."
+  },
+  {
+    question: "How can Public Relations help my brand?",
+    answer: "PR enhances brand visibility, builds credibility, and fosters positive relationships with media, stakeholders, and customers through strategic storytelling."
+  },
+  {
+    question: "Do you offer leadership training for individuals and organizations?",
+    answer: "Yes! Our leadership development programs are designed for both emerging leaders and seasoned professionals looking to refine their skills."
+  },
+  {
+    question: "Can you help with brand messaging and content strategy?",
+    answer: "Absolutely! Our copywriting and content strategy services ensure your messaging aligns with your brand's voice and reaches the right audience."
+  },
+  {
+    question: "What's included in your graphic design services?",
+    answer: "We offer branding, logo design, marketing materials, social media graphics, and more to create a strong visual identity for your business."
+  },
+  {
+    question: "Do you provide market research reports?",
+    answer: "Yes, our research skills extend to competitor analysis, market trends, and data-driven insights to help businesses make informed decisions."
+  },
+  {
+    question: "Can you help me optimize my resume for job applications?",
+    answer: "Yes, we craft professional resumes tailored to industry standards, ensuring your skills and achievements stand out to recruiters."
+  },
+  {
+    question: "What types of events do you manage?",
+    answer: "We handle corporate events, conferences, workshops, networking events, and community engagement programs."
+  },
+  {
+    question: "How does your UI/UX design process work?",
+    answer: "We focus on user research, wireframing, prototyping, and usability testing to create seamless digital experiences."
+  },
+  {
+    question: "What kind of websites do you develop?",
+    answer: "We build everything from simple landing pages to complex web applications, ensuring responsiveness and high performance."
+  },
+  {
+    question: "Why is SEO important for my website?",
+    answer: "SEO helps improve your website's visibility on search engines, driving organic traffic and increasing potential leads and conversions."
+  },
+  {
+    question: "Can you handle my business's digital marketing campaigns?",
+    answer: "Yes! Our marketing services include social media, email marketing, and paid ad campaigns to grow your audience and drive sales."
+  },
+  {
+    question: "Do you provide one-on-one mentorship programs?",
+    answer: "Yes, we offer personalized mentorship for career development, business strategies, and skill enhancement."
+  },
+  {
+    question: "How can you help build and engage a community?",
+    answer: "Through strategic content, events, and engagement tactics, we help foster strong communities that drive brand loyalty."
+  },
+  {
+    question: "What can I expect from a consultation session?",
+    answer: "A strategic discussion where we assess your challenges, provide expert advice, and develop an actionable plan."
+  },
+  {
+    question: "Do you offer corporate training workshops?",
+    answer: "Yes, we provide technical and soft skills training tailored to corporate teams, professionals, and startups."
+  },
   {
     question: "What types of projects do you typically work on?",
     answer: "I specialize in digital products including websites, mobile applications, e-commerce platforms, and SaaS interfaces. My experience spans various industries including technology, finance, healthcare, education, and retail."
@@ -641,10 +712,10 @@ export default function ServicesPage() {
         >
           <div className="max-w-3xl mx-auto mb-16 text-center">
             <h2 className="text-2xl md:text-3xl font-serif font-semibold text-gradient mb-4">
-              My Process
+              Our Process
             </h2>
             <p className="text-muted-foreground">
-              A structured approach to deliver consistent results and exceptional quality
+              We follow a structured approach to ensure quality and efficiency in every service we offer
             </p>
           </div>
 
@@ -683,7 +754,7 @@ export default function ServicesPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground">
-              Answers to common questions about my services and process
+              Answers to common questions about our services and process
             </p>
           </div>
 
