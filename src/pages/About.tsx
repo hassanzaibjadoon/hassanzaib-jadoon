@@ -14,6 +14,11 @@ import Experience from '@/components/about/Experience';
 import ClientReviews from '@/components/about/ClientReviews';
 import Certifications from '@/components/about/Certifications';
 
+// Import client review images
+import TomNorthImg from '@/img/Tom North.jpeg';
+import ObenImg from '@/img/Oben.jpeg';
+import JoeRobinsonImg from '@/img/Joe Robbinson.jpeg';
+
 const skills = [
   'Project Management',
   'Team Coordination',
@@ -92,21 +97,24 @@ const clientReviews = [
     title: "Job Seeker",
     rating: 5,
     date: "August 1, 2024",
-    text: "Hassan is a consummate professional. I believe his expertise, especially with ATS, will effectively support my job search. I highly recommend his services."
+    text: "Hassan is a consummate professional. I believe his expertise, especially with ATS, will effectively support my job search. I highly recommend his services.",
+    image: TomNorthImg
   },
   {
     name: "Oben Eyonganyo",
     title: "Client",
     rating: 5,
     date: "July 22, 2024",
-    text: "Hassan is very hardworking, resilient, and patient. He executed top-notch work with great knowledge and expertise. He asks the right questions, welcomes feedback, and makes necessary alterations without hesitation. I will 100% recommend him to my family, friends, and loved ones."
+    text: "Hassan is very hardworking, resilient, and patient. He executed top-notch work with great knowledge and expertise. He asks the right questions, welcomes feedback, and makes necessary alterations without hesitation. I will 100% recommend him to my family, friends, and loved ones.",
+    image: ObenImg
   },
   {
     name: "Joe Robinson",
     title: "Collaborator",
     rating: 5,
     date: "June 7, 2024",
-    text: "Hassan Zaib Jadoon is a professional and a pleasure to work with. Very knowledgeable, understanding, and easy to collaborate with. Would absolutely recommend him."
+    text: "Hassan Zaib Jadoon is a professional and a pleasure to work with. Very knowledgeable, understanding, and easy to collaborate with. Would absolutely recommend him.",
+    image: JoeRobinsonImg
   }
 ];
 

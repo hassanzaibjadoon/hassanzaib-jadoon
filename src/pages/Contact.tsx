@@ -118,10 +118,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-medium mb-1">Email</h3>
                     <a 
-                      href="mailto:hello@example.com" 
+                      href="mailto:Hassanzaibjadoon2004@gmail.com" 
                       className="text-sm text-muted-foreground hover:text-foreground transition-smooth"
                     >
-                      hello@example.com
+                      Hassanzaibjadoon2004@gmail.com
                     </a>
                   </div>
                 </CardContent>
@@ -135,10 +135,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-medium mb-1">Phone</h3>
                     <a 
-                      href="tel:+11234567890" 
+                      href="tel:+923119541429" 
                       className="text-sm text-muted-foreground hover:text-foreground transition-smooth"
                     >
-                      +1 (123) 456-7890
+                      +92 311 9541429
                     </a>
                   </div>
                 </CardContent>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-medium mb-1">Location</h3>
                     <p className="text-sm text-muted-foreground">
-                      San Francisco, California, USA
+                      Peshawar, Pakistan
                     </p>
                   </div>
                 </CardContent>

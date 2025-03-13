@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Download, BriefcaseBusiness, GraduationCap, Award, Clock, Code, Users } from 'lucide-react';
+import ResumeFile from '@/Documents/HassanZaibJadoonResume.pdf';
 
 // Animation variants
 const fadeIn = {
@@ -153,15 +154,17 @@ export default function ResumePage() {
               Community Manager | Focused on Project Coordination and People Management
             </p>
             <div className="mt-4 flex flex-wrap gap-4">
-              <span className="text-sm text-muted-foreground">📱 +92 3119541429</span>
+              <span className="text-sm text-muted-foreground">📱 +92 311 9541429</span>
               <span className="text-sm text-muted-foreground">📧 Hassanzaibjadoon2004@gmail.com</span>
               <span className="text-sm text-muted-foreground">📍 Peshawar, Pakistan</span>
             </div>
           </div>
-          <Button className="mt-6 md:mt-0 flex items-center gap-2 bg-foreground text-background hover:bg-foreground/90">
-            <Download size={16} />
-            Download Resume PDF
-          </Button>
+          <a href={ResumeFile} download="Hassan_Zaib_Jadoon_Resume.pdf">
+            <Button className="mt-6 md:mt-0 flex items-center gap-2 bg-foreground text-background hover:bg-foreground/90">
+              <Download size={16} />
+              Download Resume PDF
+            </Button>
+          </a>
         </motion.div>
 
         <Tabs 

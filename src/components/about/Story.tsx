@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
 
 interface StoryProps {
   showTeam: boolean;
@@ -42,13 +43,17 @@ const Story = ({ showTeam }: StoryProps) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="h-full w-full bg-muted flex items-center justify-center sparkle-effect"
+                className="h-full w-full flex items-center justify-center sparkle-effect"
                 whileHover={{ 
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
               >
-                <span className="text-muted-foreground">Hassan Zaib Jadoon</span>
+                <img 
+                  src={ProfilePicture} 
+                  alt="Hassan Zaib Jadoon" 
+                  className="w-full h-full object-cover"
+                />
               </motion.div>
             )}
           </motion.div>

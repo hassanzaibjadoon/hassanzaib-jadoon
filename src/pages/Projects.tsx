@@ -1,7 +1,33 @@
+
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, Filter } from 'lucide-react';
+import { 
+  ExternalLink, 
+  Filter, 
+  Code, 
+  UserCog, 
+  Users, 
+  FileText, 
+  BarChart4, 
+  HelpingHand,
+  Megaphone, 
+  Award, 
+  Pen, 
+  Palette, 
+  Search, 
+  FileCheck, 
+  Calendar, 
+  Smartphone, 
+  Globe, 
+  Briefcase, 
+  Search,
+  MailOpen,
+  GraduationCap,
+  Heart,
+  MessageSquare,
+  LineChart
+} from 'lucide-react';
 import Layout from '@/components/Layout';
 
 const ProjectsPage = () => {
@@ -12,6 +38,30 @@ const ProjectsPage = () => {
     : projects.filter(project => project.category === filter);
   
   const categories = ['all', ...new Set(projects.map(project => project.category))];
+  
+  // Map of category to icon
+  const categoryIcons: { [key: string]: JSX.Element } = {
+    'project management': <FileText size={36} />,
+    'human resources': <Users size={36} />,
+    'program management': <UserCog size={36} />,
+    'public relations': <Megaphone size={36} />,
+    'leadership development': <Award size={36} />,
+    'copywriting': <Pen size={36} />,
+    'graphic design': <Palette size={36} />,
+    'research': <Search size={36} />,
+    'career services': <FileCheck size={36} />,
+    'event management': <Calendar size={36} />,
+    'ui/ux design': <Smartphone size={36} />,
+    'web development': <Globe size={36} />,
+    'branding': <Briefcase size={36} />,
+    'seo': <BarChart4 size={36} />,
+    'marketing': <MailOpen size={36} />,
+    'education': <GraduationCap size={36} />,
+    'community': <Heart size={36} />,
+    'consulting': <MessageSquare size={36} />,
+    'training': <LineChart size={36} />,
+    'all': <Code size={36} />
+  };
   
   return (
     <Layout>
@@ -90,9 +140,9 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group relative overflow-hidden rounded-xl neo-blur hover:shadow-lg transition-smooth"
               >
-                <div className="aspect-video overflow-hidden">
-                  <div className="h-full w-full bg-muted flex items-center justify-center">
-                    <span className="text-muted-foreground">Project Image</span>
+                <div className="aspect-video overflow-hidden bg-card/50 flex items-center justify-center">
+                  <div className="text-primary/80">
+                    {categoryIcons[project.category] || <Code size={36} />}
                   </div>
                 </div>
                 <div className="p-6">

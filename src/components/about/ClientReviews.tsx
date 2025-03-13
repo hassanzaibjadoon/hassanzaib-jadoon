@@ -2,6 +2,12 @@
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+
+// Import client review images
+import TomNorthImg from '@/img/Tom North.jpeg';
+import ObenImg from '@/img/Oben.jpeg';
+import JoeRobinsonImg from '@/img/Joe Robbinson.jpeg';
 
 interface Review {
   name: string;
@@ -9,6 +15,7 @@ interface Review {
   rating: number;
   date: string;
   text: string;
+  image: string;
 }
 
 interface ClientReviewsProps {
@@ -65,9 +72,12 @@ const ClientReviews = ({ reviews }: ClientReviewsProps) => {
                   </div>
                   <p className="text-sm mb-4">{review.text}</p>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
-                      {review.name.charAt(0)}
-                    </div>
+                    <Avatar className="w-10 h-10 border border-primary/20">
+                      <AvatarImage src={review.image} alt={review.name} />
+                      <AvatarFallback className="bg-primary/10 text-primary">
+                        {review.name.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
                     <div className="ml-3">
                       <h4 className="text-sm font-medium">{review.name}</h4>
                       <p className="text-xs text-muted-foreground">{review.title}</p>
