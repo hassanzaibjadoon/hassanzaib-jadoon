@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,7 +20,6 @@ import {
   Smartphone, 
   Globe, 
   Briefcase, 
-  Search,
   MailOpen,
   GraduationCap,
   Heart,
@@ -39,7 +37,6 @@ const ProjectsPage = () => {
   
   const categories = ['all', ...new Set(projects.map(project => project.category))];
   
-  // Map of category to icon
   const categoryIcons: { [key: string]: JSX.Element } = {
     'project management': <FileText size={36} />,
     'human resources': <Users size={36} />,
@@ -65,7 +62,6 @@ const ProjectsPage = () => {
   
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
@@ -99,7 +95,6 @@ const ProjectsPage = () => {
         </div>
       </section>
       
-      {/* Filter Section */}
       <section className="pb-12">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div 
@@ -128,7 +123,6 @@ const ProjectsPage = () => {
         </div>
       </section>
       
-      {/* Projects Grid */}
       <section className="pb-20 md:pb-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -171,7 +165,6 @@ const ProjectsPage = () => {
   );
 };
 
-// Updated Mock Data
 const projects = [
   {
     id: '1',
