@@ -13,13 +13,13 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className={`rounded-full w-9 h-9 transition-smooth ${
         theme === "light" 
-          ? "border-gray-400 bg-white hover:bg-gray-100 shadow-sm" 
-          : "border-gray-700 bg-gray-800 hover:bg-gray-700 shadow-md"
+          ? "bg-white/95 border-primary/20 hover:bg-primary/10 hover:border-primary/30 shadow-sm" 
+          : "bg-card border-primary/20 hover:bg-primary/20 hover:border-primary/40 shadow-md"
       }`}
     >
       {theme === "light" ? 
-        <Moon size={18} className="text-gray-800" /> : 
-        <Sun size={18} className="text-yellow-300" />
+        <Moon size={18} className="text-foreground opacity-90" /> : 
+        <Sun size={18} className="text-primary" />
       }
       <span className="sr-only">Toggle theme</span>
     </Button>
