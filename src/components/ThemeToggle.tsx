@@ -16,6 +16,7 @@ export default function ThemeToggle() {
           ? "bg-white/95 border-primary/20 hover:bg-primary/10 hover:border-primary/30 shadow-sm" 
           : "bg-card border-primary/20 hover:bg-primary/20 hover:border-primary/40 shadow-md"
       }`}
+      aria-label="Toggle theme"
     >
       {theme === "light" ? 
         <Moon size={18} className="text-foreground opacity-90" /> : 

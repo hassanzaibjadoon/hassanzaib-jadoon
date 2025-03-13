@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, ExternalLink, MessageSquare, Code, Users, Book, Award, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HomePage = () => {
   return (
@@ -18,38 +19,35 @@ const HomePage = () => {
         
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <motion.span 
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-block py-1 px-3 mb-6 text-xs font-medium bg-muted rounded-full"
+              className="flex flex-col md:flex-row items-center gap-8 mb-10"
             >
-              Portfolio & Professional Journey
-            </motion.span>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gradient leading-tight mb-6"
-            >
-              Hassan Zaib Jadoon
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl"
-            >
-              A natural leader with a passion for project management, people management, and community building. Currently serving as Community Manager at The Order of Pen, overseeing ambassadors and driving organizational success through strategic planning and effective team coordination.
-            </motion.p>
+              <Avatar className="h-32 w-32 border-4 border-primary shadow-lg">
+                <AvatarImage src="/src/img/Profile Picture Hassan.jpg" alt="Hassan Zaib Jadoon" />
+                <AvatarFallback className="text-3xl font-bold">HZ</AvatarFallback>
+              </Avatar>
+              
+              <div>
+                <span className="inline-block py-1 px-3 mb-3 text-xs font-medium bg-muted rounded-full">
+                  Portfolio & Professional Journey
+                </span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gradient leading-tight mb-4">
+                  Hassan Zaib Jadoon
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
+                  A natural leader with a passion for project management, people management, and community building. Currently serving as Community Manager at The Order of Pen, overseeing ambassadors and driving organizational success through strategic planning and effective team coordination.
+                </p>
+              </div>
+            </motion.div>
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 mt-8"
             >
               <Link 
                 to="/projects" 
