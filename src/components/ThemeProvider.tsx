@@ -34,23 +34,41 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     // Save the theme preference to localStorage
     localStorage.setItem("theme", theme);
 
-    // Apply specific fixes for light mode visibility
+    // Apply the new color palette
     if (theme === "light") {
-      // Ensure text contrast in light mode
-      document.documentElement.style.setProperty('--muted-foreground', '240 3.8% 36.1%');
-      document.documentElement.style.setProperty('--foreground', '240 10% 3.9%');
-      document.documentElement.style.setProperty('--border', '240 5.9% 90%');
-      document.documentElement.style.setProperty('--background', '0 0% 100%');
-      document.documentElement.style.setProperty('--card', '0 0% 100%');
-      document.documentElement.style.setProperty('--card-foreground', '240 10% 3.9%');
+      // Light mode colors using the specified palette
+      document.documentElement.style.setProperty('--background', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--foreground', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--card', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--card-foreground', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--primary', '36 100% 53%'); // #fca311
+      document.documentElement.style.setProperty('--primary-foreground', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--secondary', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--secondary-foreground', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--muted', '0 0% 80%'); // Lighter than #e5e5e5
+      document.documentElement.style.setProperty('--muted-foreground', '240 29% 30%'); // Lighter than #14213d
+      document.documentElement.style.setProperty('--accent', '36 100% 53%'); // #fca311
+      document.documentElement.style.setProperty('--accent-foreground', '0 0% 0%'); // #000000
+      document.documentElement.style.setProperty('--border', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--input', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--ring', '36 100% 53%'); // #fca311
     } else {
-      // Reset to dark mode values
-      document.documentElement.style.setProperty('--muted-foreground', '240 5% 64.9%');
-      document.documentElement.style.setProperty('--foreground', '0 0% 98%');
-      document.documentElement.style.setProperty('--border', '240 3.7% 15.9%');
-      document.documentElement.style.setProperty('--background', '240 10% 3.9%');
-      document.documentElement.style.setProperty('--card', '240 10% 3.9%');
-      document.documentElement.style.setProperty('--card-foreground', '0 0% 98%');
+      // Dark mode colors using the specified palette
+      document.documentElement.style.setProperty('--background', '0 0% 0%'); // #000000
+      document.documentElement.style.setProperty('--foreground', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--card', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--card-foreground', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--primary', '36 100% 53%'); // #fca311
+      document.documentElement.style.setProperty('--primary-foreground', '0 0% 0%'); // #000000
+      document.documentElement.style.setProperty('--secondary', '0 0% 90%'); // #e5e5e5
+      document.documentElement.style.setProperty('--secondary-foreground', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--muted', '240 29% 26%'); // Lighter than #14213d
+      document.documentElement.style.setProperty('--muted-foreground', '0 0% 70%'); // Darker than #e5e5e5
+      document.documentElement.style.setProperty('--accent', '36 100% 53%'); // #fca311
+      document.documentElement.style.setProperty('--accent-foreground', '0 0% 0%'); // #000000
+      document.documentElement.style.setProperty('--border', '0 0% 20%'); // Darker than #000000 for subtle borders
+      document.documentElement.style.setProperty('--input', '240 29% 16%'); // #14213d
+      document.documentElement.style.setProperty('--ring', '36 100% 53%'); // #fca311
     }
   }, [theme]);
 
