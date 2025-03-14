@@ -1,8 +1,65 @@
+
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, ExternalLink, MessageSquare, Code, Users, Book, Award, Star } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, ChevronDown, ExternalLink, MessageSquare, Code, Users, Book, Award, Star, Coffee, Clock, GraduationCap, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+
+// Animated counter component
+const AnimatedCounter = ({ value, duration = 2, suffix = '', icon: Icon }) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => {
+      if (countRef.current) {
+        observer.unobserve(countRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let start = 0;
+    const end = parseInt(value.toString().replace(/,/g, ''));
+    const incrementTime = Math.floor(duration * 1000 / end);
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start >= end) clearInterval(timer);
+    }, incrementTime < 10 ? 10 : incrementTime);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [value, duration, isVisible]);
+
+  return (
+    <div ref={countRef} className="flex flex-col items-center justify-center">
+      <div className="text-primary mb-3">
+        <Icon size={28} />
+      </div>
+      <h3 className="text-3xl md:text-4xl font-bold mb-1">{count}{suffix}</h3>
+    </div>
+  );
+};
 
 const HomePage = () => {
   return (
@@ -119,6 +176,39 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* 2024 Year Journey Highlights */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-20"
+          >
+            <h3 className="text-2xl md:text-3xl font-serif font-medium text-center mb-12">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-foreground">2024 Year Journey</span>
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+              {yearJourneyStats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl bg-card/30 backdrop-blur-sm p-6 text-center hover:shadow-md transition-smooth"
+                >
+                  <AnimatedCounter 
+                    value={stat.value} 
+                    icon={stat.icon}
+                    suffix={stat.suffix || ''}
+                  />
+                  <p className="text-sm text-muted-foreground mt-2">{stat.title}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
       
@@ -294,6 +384,35 @@ const highlights = [
     title: "LinkedIn Marketing Insider",
     description: "Recognized for leadership, creativity, and dedication",
     icon: Star
+  }
+];
+
+// New 2024 Journey Stats
+const yearJourneyStats = [
+  {
+    title: "Happy Participants",
+    value: 56,
+    icon: Users
+  },
+  {
+    title: "Certificates & Awards",
+    value: 9,
+    icon: Award
+  },
+  {
+    title: "Educational Programs",
+    value: 675,
+    icon: GraduationCap
+  },
+  {
+    title: "Tea Cups Per Year",
+    value: 875,
+    icon: Coffee
+  },
+  {
+    title: "Volunteer & Working Hours",
+    value: 1250,
+    icon: Heart
   }
 ];
 
