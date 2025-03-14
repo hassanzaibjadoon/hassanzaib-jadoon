@@ -18,7 +18,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -67,23 +67,37 @@ export default function ContactPage() {
   });
 
   // Form submission handler
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values);
-      setIsSubmitting(false);
+    try {
+      // Create a mailto URL with the form data
+      const mailtoUrl = `mailto:Hassanzaibjadoon2004@gmail.com?subject=${encodeURIComponent(values.subject)}&body=${encodeURIComponent(
+        `Name: ${values.name}\nEmail: ${values.email}\n\nMessage:\n${values.message}`
+      )}`;
+      
+      // Open the user's email client
+      window.open(mailtoUrl, '_blank');
       
       // Show success toast
       toast({
-        title: "Message Sent",
-        description: "Thank you for your message. I'll get back to you soon!",
+        title: "Message Ready to Send",
+        description: "Your email client has been opened. Please send the email to complete the process.",
       });
       
       // Reset form
       form.reset();
-    }, 1500);
+    } catch (error) {
+      console.error("Error:", error);
+      
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -154,6 +168,25 @@ export default function ContactPage() {
                     <p className="text-sm text-muted-foreground">
                       Peshawar, Pakistan
                     </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeIn}>
+              <Card>
+                <CardContent className="p-6 flex items-start space-x-4">
+                  <MessageSquare className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <h3 className="font-medium mb-1">WhatsApp</h3>
+                    <a 
+                      href="https://wa.me/923119541429" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-smooth"
+                    >
+                      Chat on WhatsApp
+                    </a>
                   </div>
                 </CardContent>
               </Card>
@@ -234,18 +267,30 @@ export default function ContactPage() {
                       )}
                     />
                     
-                    <Button 
-                      type="submit" 
-                      className="w-full flex items-center justify-center gap-2 bg-foreground text-background hover:bg-foreground/90"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Sending..." : (
-                        <>
-                          <Send size={16} />
-                          Send Message
-                        </>
-                      )}
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button 
+                        type="submit" 
+                        className="flex-1 flex items-center justify-center gap-2 bg-foreground text-background hover:bg-foreground/90"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Sending..." : (
+                          <>
+                            <Send size={16} />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
+                      
+                      <a
+                        href="https://wa.me/923119541429"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 transition-colors rounded-md py-2 px-4"
+                      >
+                        <MessageSquare size={16} />
+                        WhatsApp Chat
+                      </a>
+                    </div>
                   </form>
                 </Form>
               </CardContent>

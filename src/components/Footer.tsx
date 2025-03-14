@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Twitter, Facebook, Mail, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
@@ -50,16 +50,47 @@ export default function Footer() {
           >
             <h3 className="text-base font-medium">Connect</h3>
             <div className="flex space-x-4">
-              <a href="#" aria-label="Github" className="text-muted-foreground hover:text-foreground transition-smooth">
+              <a 
+                href="https://github.com/hassanzaibjadoon" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Github" 
+                className="text-muted-foreground hover:text-foreground transition-smooth"
+              >
                 <Github size={20} />
               </a>
-              <a href="#" aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground transition-smooth">
+              <a 
+                href="https://www.linkedin.com/in/hassanzaibjadoon/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="LinkedIn" 
+                className="text-muted-foreground hover:text-foreground transition-smooth"
+              >
                 <Linkedin size={20} />
               </a>
-              <a href="#" aria-label="Twitter" className="text-muted-foreground hover:text-foreground transition-smooth">
-                <Twitter size={20} />
+              <a 
+                href="https://www.facebook.com/HassanZaibJadoon2004" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Facebook" 
+                className="text-muted-foreground hover:text-foreground transition-smooth"
+              >
+                <Facebook size={20} />
               </a>
-              <a href="mailto:hello@example.com" aria-label="Email" className="text-muted-foreground hover:text-foreground transition-smooth">
+              <a 
+                href="https://www.instagram.com/hassanzaibjadoon/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Instagram" 
+                className="text-muted-foreground hover:text-foreground transition-smooth"
+              >
+                <Instagram size={20} />
+              </a>
+              <a 
+                href="mailto:Hassanzaibjadoon2004@gmail.com" 
+                aria-label="Email" 
+                className="text-muted-foreground hover:text-foreground transition-smooth"
+              >
                 <Mail size={20} />
               </a>
             </div>
@@ -68,7 +99,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-border/40 flex flex-col md:flex-row justify-between items-center">
           <p className="text-xs text-muted-foreground">
-            © {currentYear} Portfolio. All rights reserved.
+            © {currentYear} Hassan Zaib Jadoon. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-smooth">Privacy Policy</a>

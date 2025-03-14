@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
 import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
+import { Button } from './ui/button';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -69,11 +70,27 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="https://wa.me/923119541429"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-green-600 hover:text-green-700 transition-smooth font-medium text-sm"
+            >
+              <MessageSquare size={16} className="mr-1" /> Chat
+            </a>
             <ThemeToggle />
           </nav>
 
           {/* Mobile Navigation Button and Theme Toggle */}
           <div className="md:hidden flex items-center space-x-2">
+            <a
+              href="https://wa.me/923119541429"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center h-9 w-9 text-green-600 hover:text-green-700"
+            >
+              <MessageSquare size={20} />
+            </a>
             <ThemeToggle />
             <button 
               className="text-foreground/80 hover:text-foreground transition-smooth"

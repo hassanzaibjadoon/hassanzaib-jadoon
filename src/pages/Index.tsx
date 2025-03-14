@@ -1,10 +1,11 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, ChevronDown, ExternalLink, MessageSquare, Code, Users, Book, Award, Star, Coffee, Clock, GraduationCap, Heart } from 'lucide-react';
+import { ArrowRight, ChevronDown, ExternalLink, MessageSquare, Code, Users, Book, Award, Star, Coffee, Clock, GraduationCap, Heart, Briefcase, Globe, Video, PenTool, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 
 // Animated counter component
 const AnimatedCounter = ({ value, duration = 2, suffix = '', icon: Icon }) => {
@@ -209,6 +210,61 @@ const HomePage = () => {
               ))}
             </div>
           </motion.div>
+
+          {/* Achievements and Challenges */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-24"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Achievements */}
+              <div className="rounded-xl neo-blur p-8">
+                <h3 className="text-xl md:text-2xl font-serif font-medium mb-6">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-500">Achievements</span>
+                </h3>
+                <div className="space-y-4">
+                  {achievements.map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-start"
+                    >
+                      <item.icon size={18} className="text-green-500 mr-3 mt-1 flex-shrink-0" />
+                      <p className="text-sm">{item.text}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Challenges */}
+              <div className="rounded-xl neo-blur p-8">
+                <h3 className="text-xl md:text-2xl font-serif font-medium mb-6">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500">Keeping It Real</span>
+                </h3>
+                <div className="space-y-4">
+                  {challenges.map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-start"
+                    >
+                      <item.icon size={18} className="text-red-500 mr-3 mt-1 flex-shrink-0" />
+                      <p className="text-sm">{item.text}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
       
@@ -319,6 +375,21 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-12"
+          >
+            <Link 
+              to="/services" 
+              className="group inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-foreground/20 bg-transparent hover:bg-muted h-11 px-8"
+            >
+              See More <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
         </div>
       </section>
       
@@ -349,6 +420,7 @@ const HomePage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link 
                 to="/contact" 
@@ -356,10 +428,36 @@ const HomePage = () => {
               >
                 Get in Touch <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
+              <a 
+                href="https://wa.me/923119541429" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-white hover:bg-green-700 h-11 px-8"
+              >
+                WhatsApp Chat <MessageSquare size={16} className="ml-2" />
+              </a>
             </motion.div>
           </div>
         </div>
       </section>
+      
+      {/* WhatsApp floating button */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1 }}
+        className="fixed bottom-8 right-8 z-50"
+      >
+        <a
+          href="https://wa.me/923119541429"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-14 h-14 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition-colors"
+          aria-label="Chat on WhatsApp"
+        >
+          <MessageSquare size={24} />
+        </a>
+      </motion.div>
     </Layout>
   );
 };
@@ -371,7 +469,7 @@ const highlights = [
     icon: Award
   },
   {
-    title: "37+ Volunteering Experiences",
+    title: "30+ Volunteering Experiences",
     description: "Across tech, innovation, arts, literature, and environmental causes",
     icon: Users
   },
@@ -391,12 +489,14 @@ const highlights = [
 const yearJourneyStats = [
   {
     title: "Happy Participants",
-    value: 56,
+    value: 2500,
+    suffix: "+",
     icon: Users
   },
   {
-    title: "Certificates & Awards",
-    value: 9,
+    title: "Licenses & Certifications",
+    value: 45,
+    suffix: "+",
     icon: Award
   },
   {
@@ -413,6 +513,53 @@ const yearJourneyStats = [
     title: "Volunteer & Working Hours",
     value: 1250,
     icon: Heart
+  }
+];
+
+// New achievements and challenges sections
+const achievements = [
+  {
+    text: "Worked for 7 months as an Apprentice at Server4Sale LLC",
+    icon: Briefcase
+  },
+  {
+    text: "Completed 15+ International Clients Projects",
+    icon: Code
+  },
+  {
+    text: "Attended 3+ International Conferences",
+    icon: Globe
+  },
+  {
+    text: "Gave 5+ Industry Sessions",
+    icon: Users
+  },
+  {
+    text: "Hosted 15+ Webinars",
+    icon: Video
+  },
+  {
+    text: "Participated in 70+ Onsite and Online Activities and Oversaw 10+ Events",
+    icon: Calendar
+  },
+  {
+    text: "Worked for months as a Researcher at SID - Secured IoT Devices Lab - UET Peshawar",
+    icon: Book
+  },
+  {
+    text: "Grew LinkedIn from 300 to 6,100 connections with a lot of late nights and coffee",
+    icon: PenTool
+  }
+];
+
+const challenges = [
+  {
+    text: "30+ application rejections from organizations and companies, including GitHub and Google",
+    icon: MessageSquare
+  },
+  {
+    text: "Rejected THREE times for the same program",
+    icon: MessageSquare
   }
 ];
 
