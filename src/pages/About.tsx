@@ -122,13 +122,13 @@ const recommendations = [
     name: "Muhammad Zulqarnain",
     title: "Founder & CEO @ Clouditeture",
     text: "I had the pleasure of collaborating with Hassan during a community event organized through his leadership at MLSA UET Peshawar, and I was truly impressed.\n\nHassan is an exceptional leader who brings people together with enthusiasm and professionalism. His ability to create an inclusive environment and empower young talent is remarkable. He actively engaged participants, fostering meaningful discussions and ensuring everyone felt valued.\n\nI highly recommend Hassan for any future endeavors. His dedication and passion for community development make him a standout professional.",
-    image: ProfilePicture
+    image: Zulqi
   },
   {
     name: "Rajesh Kumar",
     title: "Junior Pentester",
     text: "Hassan is an outstanding Research Analyst with whom I had the pleasure of working during our internship at Server4Sale. He consistently demonstrated a passion for learning and was always eager to take on new challenges.\n\nHis ability to manage projects efficiently and deliver high-quality work on time is truly impressive. Hassan's dedication and proactive approach make him an asset to any team, and I'm confident that he will continue to excel in his future endeavors.",
-    image: ProfilePicture
+    image: Rajesh
   },
   {
     name: "Azzah Sarfraz",
