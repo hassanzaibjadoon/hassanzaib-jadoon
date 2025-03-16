@@ -122,25 +122,25 @@ const recommendations = [
     name: "Muhammad Zulqarnain",
     title: "Founder & CEO @ Clouditeture",
     text: "I had the pleasure of collaborating with Hassan during a community event organized through his leadership at MLSA UET Peshawar, and I was truly impressed.\n\nHassan is an exceptional leader who brings people together with enthusiasm and professionalism. His ability to create an inclusive environment and empower young talent is remarkable. He actively engaged participants, fostering meaningful discussions and ensuring everyone felt valued.\n\nI highly recommend Hassan for any future endeavors. His dedication and passion for community development make him a standout professional.",
-    image: Zulqi
+    image: ZulqiImg
   },
   {
     name: "Rajesh Kumar",
     title: "Junior Pentester",
     text: "Hassan is an outstanding Research Analyst with whom I had the pleasure of working during our internship at Server4Sale. He consistently demonstrated a passion for learning and was always eager to take on new challenges.\n\nHis ability to manage projects efficiently and deliver high-quality work on time is truly impressive. Hassan's dedication and proactive approach make him an asset to any team, and I'm confident that he will continue to excel in his future endeavors.",
-    image: Rajesh
+    image: RajeshImg
   },
   {
     name: "Azzah Sarfraz",
     title: "Project Coordinator | Server4Sale",
     text: "I had the pleasure of supervising Hassan Zaib Jadoon during his internship at Server4Sale, and I can confidently say he exceeded expectations in every aspect.\n\nHassan quickly became an integral part of the team, demonstrating an impressive work ethic, creativity, and eagerness to learn. He contributed significantly to all relevant projects, taking on responsibilities with professionalism and attention to detail. One of Hassan's key strengths was his ability to work both independently and as part of a team, always bringing fresh ideas and enthusiasm to the table.\n\nI highly recommend Hassan to any organization looking for a reliable, proactive, and talented individual. I'm excited to see all that he will accomplish in the future!",
-    image: ProfilePicture
+    image: AzzahImg
   },
   {
     name: "Safdar Nawaz Marwat",
     title: "Assistant Professor | Researcher | Editor | Principal Investigator | Director of Quality Enhancement Cell",
     text: "I had the privilege to teach Hassan in the undergraduate course Signals and Systems Lab, and also work with him during his internship at our Secured IoT Devices (SID) Lab.\n\nHe is not just well-versed in the scientific domain but also an entrepreneur, philanthropist, and literary figure. His poetry is as good as his prose and computing skills. His passion to go higher and get better is intense and growing with each passing day.\n\nI wish him a successful life and a shining career ahead.",
-    image: ProfilePicture
+    image: SafdarImg
   }
 ];
 
