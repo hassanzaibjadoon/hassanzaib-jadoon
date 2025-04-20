@@ -4,12 +4,6 @@ import { Star, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
-// Import client review images
-import TomNorthImg from '@/img/Tom North.jpeg';
-import ObenImg from '@/img/Oben.jpeg';
-import JoeRobinsonImg from '@/img/Joe Robbinson.jpeg';
-import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
-
 interface Review {
   name: string;
   title: string;

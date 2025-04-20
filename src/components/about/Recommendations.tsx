@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Award, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
 
 interface Recommendation {
   name: string;

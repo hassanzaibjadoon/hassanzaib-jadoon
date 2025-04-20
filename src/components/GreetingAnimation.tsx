@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@/components/ThemeProvider';
 
 interface GreetingAnimationProps {
   redirectPath?: string;
@@ -29,6 +30,7 @@ export default function GreetingAnimation({
   const [showAnimation, setShowAnimation] = useState(true);
   const navigate = useNavigate();
   const intervalRef = useRef<number>();
+  const { theme } = useTheme();
 
   useEffect(() => {
     // Show the first greeting immediately
@@ -55,9 +57,14 @@ export default function GreetingAnimation({
 
   if (!showAnimation) return null;
 
+  // Determine text and background colors based on theme
+  const bgColor = theme === 'dark' ? 'bg-[#030504]' : 'bg-[#ECE7DB]';
+  const textColor = theme === 'dark' ? 'text-[#ECE7DB]' : 'text-[#030504]';
+  const dotColor = theme === 'dark' ? 'bg-[#CDAD84]' : 'bg-[#CDAD84]';
+
   return (
     <motion.div
-      className="fixed inset-0 bg-black z-50 flex justify-center items-center"
+      className={`fixed inset-0 ${bgColor} z-50 flex justify-center items-center`}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
@@ -69,10 +76,10 @@ export default function GreetingAnimation({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="text-[#FEE715] text-4xl md:text-5xl whitespace-nowrap m-0 absolute"
+            className={`${textColor} text-4xl md:text-5xl font-serif whitespace-nowrap m-0 absolute`}
           >
             {greetings[currentIndex]}
-            <span className="inline-block w-2.5 h-2.5 bg-[#FEE715] rounded-full ml-2.5 align-middle"></span>
+            <span className={`inline-block w-2.5 h-2.5 ${dotColor} rounded-full ml-2.5 align-middle`}></span>
           </motion.h2>
         </AnimatePresence>
       </div>

@@ -2,7 +2,9 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
+
+// Import the profile picture with the correct path
+import ProfilePicture from '../../img/Profile Picture Hassan.jpg';
 
 interface StoryProps {
   showTeam: boolean;
