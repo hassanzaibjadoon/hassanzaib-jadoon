@@ -16,10 +16,10 @@ import Recommendations from '@/components/about/Recommendations';
 import Certifications from '@/components/about/Certifications';
 
 // Import client review images directly
-import TomNorthImg from '../img/Tom North.jpeg';
-import ObenImg from '../img/Oben.jpeg';
-import JoeRobinsonImg from '../img/Joe Robbinson.jpeg';
-import ProfilePicture from '../img/Profile Picture Hassan.jpg';
+import TomNorthImg from '@/img/Tom North.jpeg';
+import ObenImg from '@/img/Oben.jpeg';
+import JoeRobinsonImg from '@/img/Joe Robbinson.jpeg';
+import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
 
 const skills = [
   'Project Management',
