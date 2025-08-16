@@ -84,7 +84,7 @@ const HomePage = () => {
               className="flex flex-col md:flex-row items-center gap-8 mb-10"
             >
               <Avatar className="h-32 w-32 border-4 border-primary shadow-lg">
-                <AvatarImage src="/src/img/Profile Picture Hassan.jpg" alt="Hassan Zaib Jadoon" />
+                <AvatarImage src="/images/Profile Picture Hassan.jpg" alt="Hassan Zaib Jadoon" />
                 <AvatarFallback className="text-3xl font-bold">HZ</AvatarFallback>
               </Avatar>
               

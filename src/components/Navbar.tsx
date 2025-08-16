@@ -53,7 +53,7 @@ export default function Navbar() {
             className="flex items-center gap-3"
           >
             <Avatar className="h-9 w-9 border-2 border-primary">
-              <AvatarImage src="/src/img/Profile Picture Hassan.jpg" alt="Hassan Zaib Jadoon" />
+              <AvatarImage src="/images/Profile Picture Hassan.jpg" alt="Hassan Zaib Jadoon" />
               <AvatarFallback className="bg-secondary text-secondary-foreground">HZ</AvatarFallback>
             </Avatar>
             <span className="text-xl md:text-2xl font-serif font-semibold text-gradient">Portfolio</span>
