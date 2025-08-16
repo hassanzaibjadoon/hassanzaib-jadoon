@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Import the profile picture with the correct path
-const ProfilePicture = '/images/Profile Picture Hassan.jpg';
+import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
 
 interface StoryProps {
   showTeam: boolean;

@@ -14,13 +14,12 @@ import Experience from '@/components/about/Experience';
 import ClientReviews from '@/components/about/ClientReviews';
 import Recommendations from '@/components/about/Recommendations';
 import Certifications from '@/components/about/Certifications';
-import LinkedInProfile from '@/components/about/LinkedInProfile';
 
-// Import client review images directly - using public directory paths
-const TomNorthImg = '/images/Tom North.jpeg';
-const ObenImg = '/images/Oben.jpeg';
-const JoeRobinsonImg = '/images/Joe Robbinson.jpeg';
-const ProfilePicture = '/images/Profile Picture Hassan.jpg';
+// Import client review images directly
+import TomNorthImg from '@/img/Tom North.jpeg';
+import ObenImg from '@/img/Oben.jpeg';
+import JoeRobinsonImg from '@/img/Joe Robbinson.jpeg';
+import ProfilePicture from '@/img/Profile Picture Hassan.jpg';
 
 const skills = [
   'Project Management',
@@ -410,7 +409,6 @@ const AboutPage = () => {
         programmingCertifications={programmingCertifications}
         socialCertifications={socialCertifications}
       />
-      <LinkedInProfile />
     </Layout>
   );
 };
